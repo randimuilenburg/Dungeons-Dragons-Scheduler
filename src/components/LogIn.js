@@ -4,7 +4,6 @@ const loggingIn = () => {
   return (
     <div>
       <Row>
-        {/* <Col></Col> */}
         <Col>{loginForm()}</Col>
       </Row>
     </div>

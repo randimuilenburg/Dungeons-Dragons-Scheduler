@@ -6,15 +6,14 @@ const Header = () => {
     <div>
       <Container>
         <Row>
-          {/* <Col></Col> */}
-          <Col xs lg="6">
-            {swordImage()}
+          <Col xs lg="4">
+            {dragonImage()}
           </Col>
-          <Col xs lg="8">
+          <Col xs lg="4">
             {schedulerHeader()}
           </Col>
-          <Col xs lg="10">
-            {dragonImage()}
+          <Col xs lg="4">
+            {swordImage()}
           </Col>
         </Row>
       </Container>
@@ -25,7 +24,7 @@ const Header = () => {
 // Helper Functions:
 
 const schedulerHeader = () => {
-  return <h1 className="header">The Dungeon Scheduler</h1>;
+  return <h2 className="header">The Dungeon Scheduler</h2>;
 };
 
 const dragonImage = () => {
