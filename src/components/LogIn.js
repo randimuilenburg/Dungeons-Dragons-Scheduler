@@ -48,13 +48,13 @@ const loginForm = () => {
         </div>
       </div>
 
-      <button
-        className="enterButton"
-        type="button"
-        class="btn btn-success btn-block mb-4"
+      <Button
+        variant="outline-danger"
+        class="btn btn-danger mb-4"
+        // className="enterButton"
       >
         Enter
-      </button>
+      </Button>
 
       <div class="text-center">
         <p>
