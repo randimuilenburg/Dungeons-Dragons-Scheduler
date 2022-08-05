@@ -1,17 +1,30 @@
+import { Form, Button, Label, Col, Row } from "react-bootstrap";
+
+const loggingIn = () => {
+  return (
+    <div>
+      <Row>
+        {/* <Col></Col> */}
+        <Col>{loginForm()}</Col>
+      </Row>
+    </div>
+  );
+};
+
 const loginForm = () => {
   return (
-    <form>
+    <form className="loggingForm">
       <div class="form-outline mb-4">
         <input type="email" id="form2Example1" class="form-control" />
         <label class="form-label" for="form2Example1">
-          Email
+          Enter Email
         </label>
       </div>
 
       <div class="form-outline mb-4">
         <input type="password" id="form2Example2" class="form-control" />
         <label class="form-label" for="form2Example2">
-          Password
+          Enter Password
         </label>
       </div>
 
@@ -32,21 +45,25 @@ const loginForm = () => {
         </div>
 
         <div class="col">
-          <a href="#!">Forgot password?</a>
+          <a href="#!">Forgot your password, traveler?</a>
         </div>
       </div>
 
-      <button type="button" class="btn btn-dark btn-block mb-4">
-        Sign in
+      <button
+        className="enterButton"
+        type="button"
+        class="btn btn-success btn-block mb-4"
+      >
+        Enter
       </button>
 
       <div class="text-center">
         <p>
-          New here? <a href="#!">Register!</a>
+          New to the game? <a href="#!">Register here.</a>
         </p>
       </div>
     </form>
   );
 };
 
-export default loginForm;
+export default loggingIn;
