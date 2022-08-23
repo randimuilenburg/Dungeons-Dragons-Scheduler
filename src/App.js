@@ -1,7 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import LogIn from "./components/LogIn";
-// import Views from "./components/Views";
+import Views from "./components/Views";
 import React from "react";
 
 function App() {
@@ -9,8 +8,7 @@ function App() {
     <div className="App">
       <React.Fragment>
         <Header />
-        <LogIn />
-        {/* <Views /> */}
+        <Views />
       </React.Fragment>
     </div>
   );

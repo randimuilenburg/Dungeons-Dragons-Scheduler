@@ -1,19 +1,9 @@
 import { useState } from "react";
 import { Form, Button, Label, Col, Row } from "react-bootstrap";
 
-// const loggingIn = () => {
-//   return (
-//     <div>
-//       <Row>
-//         <Col>{loginForm()}</Col>
-//       </Row>
-//     </div>
-//   );
-// };
-
 const LoggingInForm = () => {
-  const [emailIsValid, setEmailIsValid] = useState(false);
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [emailIsValid, setEmailIsValid] = useState(true);
+  const [passwordIsValid, setPasswordIsValid] = useState(true);
 
   // Validating Input Fields:
   const validateField = (e) => {
