@@ -33,30 +33,4 @@ const Header = () => {
   );
 };
 
-// Helper Functions:
-
-// const schedulerHeader = () => {
-//   return;
-// };
-
-// const dragonImage = () => {
-//   return (
-//     <img
-//       className="dragonPic"
-//       src={require("../Images/Dragon.jpg")}
-//       alt="Blue Dragon"
-//     />
-//   );
-// };
-
-// const swordImage = () => {
-//   return (
-//     <img
-//       className="swordPic"
-//       src={require("../Images/Sword.jpg")}
-//       alt="Sword"
-//     />
-//   );
-// };
-
 export default Header;

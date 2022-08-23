@@ -58,7 +58,7 @@
 }
 
 /* Login Form */
-.loggingForm {
+/* .loggingForm {
   padding-left: 350px;
   padding-right: 400px;
 }
@@ -66,4 +66,19 @@
 .enterButton {
   padding-left: 700px;
   padding-right: 400px;
+} */
+
+.loggingForm {
+  padding-left: 400px;
+  padding-right: 300px;
+}
+
+.forgetPassword {
+  padding-top: 20px;
+  padding-left: 200px;
+}
+
+.registerHere {
+  padding-top: 20px;
+  padding-left: 200px;
 }
