@@ -1,9 +1,11 @@
+import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { Form, Button, Label, Col, Row } from "react-bootstrap";
 
 const LoggingInForm = () => {
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  // const [pageIsFresh, setPageIsFresh] = useState(true);
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
 
   // Validating Input Fields:
   const validateField = (e) => {
@@ -18,6 +20,15 @@ const LoggingInForm = () => {
         break;
     }
   };
+
+  // Validating whether the page is fresh or not:
+  // const validatePage = (fieldValue) => {
+  //   if (fieldValue === undefined) {
+  //     setPageIsFresh(false);
+  //   } else {
+  //     setPageIsFresh(true);
+  //   }
+  // };
 
   // Validating Email:
   const validateEmail = (fieldValue) => {
@@ -37,6 +48,10 @@ const LoggingInForm = () => {
     }
   };
 
+  // UseEffect
+  // (onSubmit) = useEffect in Submit button
+  // use it to look up email, match email to user, console.log user to see if it works?
+
   return (
     <Row>
       <Col>
@@ -48,7 +63,10 @@ const LoggingInForm = () => {
               placeholder="Enter your email"
               class="form-label"
               for="form2Example1"
-              isInvalid={emailIsValid === false}
+              isInvalid={
+                // pageIsFresh === true ||
+                emailIsValid === false
+              }
               onBlur={(e) => {
                 validateField(e);
               }}
@@ -77,7 +95,12 @@ const LoggingInForm = () => {
               id="rememberCheckbox"
             />
           </Form.Group>
-          <Button variant="outline-danger" type="submit">
+          <Button
+            disabled={emailIsValid !== true || passwordIsValid !== true}
+            variant="outline-danger"
+            type="submit"
+          >
+            {" "}
             Submit
           </Button>
           <div className="forgetPassword">

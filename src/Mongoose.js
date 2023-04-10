@@ -18,24 +18,28 @@ const user = new User(
   {
     _id: 1,
     name: "Randi M",
+    character: "Rhubarb",
     email: "randiemail@gmail.com",
     password: "RandiPassword",
   },
   {
     _id: 2,
     name: "Spenser W",
+    character: "Dungeon Master",
     email: "spenseremail@gmail.com",
     password: "SpenserPassword",
   },
   {
     _id: 3,
     name: "Janey R",
+    character: "Theo",
     email: "janeyemail@gmail.com",
     password: "JaneyPassword",
   },
   {
     _id: 4,
     name: "Tyler E",
+    character: "Devil Lady",
     email: "tyleremail@gmail.com",
     password: "TylerEmail",
   }

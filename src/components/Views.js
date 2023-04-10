@@ -3,6 +3,7 @@ import Header from "./Header";
 import LoggingInForm from "./LogIn";
 import ForgotPassword from "./PasswordReset";
 import CreateNewUser from "./Register";
+import WelcomeBack from "./LandingPage";
 
 const Views = () => {
   return (
@@ -11,6 +12,7 @@ const Views = () => {
         <Route path="/" element={<LoggingInForm />} />
         <Route path="register" element={<CreateNewUser />} />
         <Route path="reset" element={<ForgotPassword />} />
+        <Route path="landing" element={<WelcomeBack />} />
       </Routes>
     </BrowserRouter>
   );
