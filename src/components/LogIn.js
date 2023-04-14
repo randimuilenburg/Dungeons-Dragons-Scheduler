@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Form, Button, Label, Col, Row } from "react-bootstrap";
 
 const LoggingInForm = () => {
-  // const [pageIsFresh, setPageIsFresh] = useState(true);
+  const [pageIsFresh, setPageIsFresh] = useState(true);
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [passwordIsValid, setPasswordIsValid] = useState(false);
 
@@ -13,29 +13,29 @@ const LoggingInForm = () => {
     let fieldId = e.target.id;
     switch (fieldId) {
       case "formBasicEmail":
-        validateEmail(fieldValue);
+        validateEmail(fieldValue) || validatePage(true);
         break;
       case "formBasicPassword":
-        validatePassword(fieldValue);
+        validatePassword(fieldValue) || validatePage(true);
         break;
     }
   };
 
   // Validating whether the page is fresh or not:
-  // const validatePage = (fieldValue) => {
-  //   if (fieldValue === undefined) {
-  //     setPageIsFresh(false);
-  //   } else {
-  //     setPageIsFresh(true);
-  //   }
-  // };
+  const validatePage = (fieldValue) => {
+    if (fieldValue === undefined) {
+      setPageIsFresh(true);
+    } else {
+      setPageIsFresh(false);
+    }
+  };
 
   // Validating Email:
   const validateEmail = (fieldValue) => {
-    if (fieldValue.includes("@" && ".com", ".net")) {
-      setEmailIsValid(true);
-    } else {
+    if (!fieldValue.includes("@" && ".com", ".net") || fieldValue === null) {
       setEmailIsValid(false);
+    } else {
+      setEmailIsValid(true);
     }
   };
 
@@ -56,6 +56,7 @@ const LoggingInForm = () => {
     <Row>
       <Col>
         <Form className="loggingForm">
+          <h5>Welcome.</h5>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
@@ -63,10 +64,7 @@ const LoggingInForm = () => {
               placeholder="Enter your email"
               class="form-label"
               for="form2Example1"
-              isInvalid={
-                // pageIsFresh === true ||
-                emailIsValid === false
-              }
+              isInvalid={pageIsFresh === false && emailIsValid === false}
               onBlur={(e) => {
                 validateField(e);
               }}
@@ -80,7 +78,7 @@ const LoggingInForm = () => {
               placeholder="Enter your password"
               class="form-label"
               for="form2Example2"
-              isInvalid={passwordIsValid === false}
+              isInvalid={pageIsFresh === false && passwordIsValid === false}
               onBlur={(e) => {
                 validateField(e);
               }}
@@ -96,7 +94,12 @@ const LoggingInForm = () => {
             />
           </Form.Group>
           <Button
-            disabled={emailIsValid !== true || passwordIsValid !== true}
+            disabled={
+              emailIsValid !== true ||
+              undefined ||
+              passwordIsValid !== true ||
+              undefined
+            }
             variant="outline-danger"
             type="submit"
           >
