@@ -1,6 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { Form, Button, Label, Col, Row } from "react-bootstrap";
+// import api.json from ''
 
 const LoggingInForm = () => {
   const [pageIsFresh, setPageIsFresh] = useState(true);
@@ -47,6 +48,13 @@ const LoggingInForm = () => {
       setPasswordIsValid(true);
     }
   };
+
+  // API TEST CODE
+  // const playerName =
+
+  // const testCode = () => {
+  //   return `Here is ${apiData.players[0].character}!`;
+  // };
 
   // UseEffect
   // (onSubmit) = useEffect in Submit button
@@ -114,6 +122,10 @@ const LoggingInForm = () => {
               New to the game? <a href="#!">Register here.</a>
             </p>
           </div>
+          {/* API TEST CODE */}
+          {/* <div>
+            <p>`Testing something! Here is: ${testCode}.`</p>
+          </div> */}
         </Form>
       </Col>
     </Row>
