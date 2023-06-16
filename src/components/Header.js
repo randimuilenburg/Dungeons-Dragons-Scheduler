@@ -48,7 +48,7 @@ const Header = () => {
     <div>
       <Container>
         <Row>
-          <Col xs lg="4">
+          <Col xs lg={4}>
             {
               <img
                 className="dragonPic"
@@ -57,10 +57,10 @@ const Header = () => {
               />
             }
           </Col>
-          <Col xs lg="4">
+          <Col xs lg={4}>
             {<h2 className="header">The Dungeon Scheduler</h2>}
           </Col>
-          <Col xs lg="4">
+          <Col xs lg={4}>
             {
               <img
                 className="swordPic"

@@ -119,7 +119,8 @@ const LoggingInForm = () => {
           </div>
           <div className="registerHere">
             <p>
-              New to the game? <a href="#!">Register here.</a>
+              New to the game?{" "}
+              <a href="http://localhost:3000/Register">Register here.</a>
             </p>
           </div>
           {/* API TEST CODE */}
@@ -132,4 +133,13 @@ const LoggingInForm = () => {
   );
 };
 
+// const RegisterHereLink = () => {
+//   return (
+//     <Link to="/Login">
+//       <Button variant="danger" size="xl">
+//         Let's go.
+//       </Button>
+//     </Link>
+//   );
+// };
 export default LoggingInForm;
