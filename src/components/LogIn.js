@@ -49,17 +49,6 @@ const LoggingInForm = () => {
     }
   };
 
-  // API TEST CODE
-  // const playerName =
-
-  // const testCode = () => {
-  //   return `Here is ${apiData.players[0].character}!`;
-  // };
-
-  // UseEffect
-  // (onSubmit) = useEffect in Submit button
-  // use it to look up email, match email to user, console.log user to see if it works?
-
   return (
     <Row>
       <Col>
@@ -123,23 +112,10 @@ const LoggingInForm = () => {
               <a href="http://localhost:3000/Register">Register here.</a>
             </p>
           </div>
-          {/* API TEST CODE */}
-          {/* <div>
-            <p>`Testing something! Here is: ${testCode}.`</p>
-          </div> */}
         </Form>
       </Col>
     </Row>
   );
 };
 
-// const RegisterHereLink = () => {
-//   return (
-//     <Link to="/Login">
-//       <Button variant="danger" size="xl">
-//         Let's go.
-//       </Button>
-//     </Link>
-//   );
-// };
 export default LoggingInForm;
