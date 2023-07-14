@@ -7,6 +7,7 @@ const CreateNewUser = () => {
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [retypedPasswordIsValid, setRetypedPasswordIsValid] = useState(true);
+  const [password, setPassword] = useState(null);
 
   // Validating Input Fields:
   const validateField = (e) => {
@@ -69,7 +70,11 @@ const CreateNewUser = () => {
 
   // Validating Retyped Password:
   const validateRetypedPassword = (fieldValue) => {
-    if (fieldValue === null || fieldValue.trim() === "") {
+    if (
+      fieldValue === null ||
+      fieldValue.trim() === "" ||
+      fieldValue !== password
+    ) {
       setRetypedPasswordIsValid(false);
     } else {
       setRetypedPasswordIsValid(true);
@@ -130,6 +135,7 @@ const CreateNewUser = () => {
               isInvalid={passwordIsValid === false}
               onBlur={(e) => {
                 validateField(e);
+                setPassword(e.target.value);
               }}
             />
           </Form.Group>
@@ -140,16 +146,28 @@ const CreateNewUser = () => {
               placeholder="Type your password again"
               class="form-label"
               for="form2Example2"
-              isInvalid={retypedPasswordIsValid === false}
-              // testing
-              // || validatePassword !== validateRetypedPassword
+              isInvalid={
+                retypedPasswordIsValid === false ||
+                retypedPasswordIsValid !== passwordIsValid
 
+                // EDIT HERE
+              }
               onBlur={(e) => {
                 validateField(e);
               }}
             />
           </Form.Group>
-          <Button variant="outline-danger" type="submit">
+          <Button
+            disabled={
+              firstNameIsValid !== true ||
+              lastNameIsValid !== true ||
+              emailIsValid !== true ||
+              passwordIsValid !== true ||
+              retypedPasswordIsValid !== true
+            }
+            variant="outline-danger"
+            type="submit"
+          >
             Register{" "}
           </Button>
         </Form>
