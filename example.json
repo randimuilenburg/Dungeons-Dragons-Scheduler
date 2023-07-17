@@ -1,0 +1,13 @@
+{
+    "primativeInt": 1,
+    "primativeStr": "hello",
+    "obj": {
+        "primativeInt": 2,
+        "obj": {
+            "primativeStr": "hi"
+        }
+    },
+    "array": [
+      1, 2, "hello", {}, []
+    ]
+}
