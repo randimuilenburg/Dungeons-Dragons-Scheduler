@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Form, Button, Label, Col, Row } from "react-bootstrap";
 
 const CreateNewUser = () => {
-  const [firstNameIsValid, setFirstNameIsValid] = useState(true);
-  const [lastNameIsValid, setLastNameIsValid] = useState(true);
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
-  const [retypedPasswordIsValid, setRetypedPasswordIsValid] = useState(true);
+  const [firstNameIsValid, setFirstNameIsValid] = useState(null);
+  const [lastNameIsValid, setLastNameIsValid] = useState(null);
+  const [emailIsValid, setEmailIsValid] = useState(null);
+  const [passwordIsValid, setPasswordIsValid] = useState(null);
+  const [retypedPasswordIsValid, setRetypedPasswordIsValid] = useState(null);
   const [password, setPassword] = useState(null);
 
   // Validating Input Fields:
@@ -88,7 +88,7 @@ const CreateNewUser = () => {
           <Form.Group className="mb-3" controlId="formBasicInput1">
             <Form.Label>First Name</Form.Label>
             <Form.Control
-              type="email"
+              type="text"
               placeholder="Enter your first name"
               class="form-label"
               for="form2Example1"
@@ -101,7 +101,7 @@ const CreateNewUser = () => {
           <Form.Group className="mb-3" controlId="formBasicInput2">
             <Form.Label>Last Name</Form.Label>
             <Form.Control
-              type="email"
+              type="text"
               placeholder="Enter your last name"
               class="form-label"
               for="form2Example1"
@@ -149,9 +149,9 @@ const CreateNewUser = () => {
               isInvalid={
                 retypedPasswordIsValid === false ||
                 retypedPasswordIsValid !== passwordIsValid
-
-                // EDIT HERE
               }
+              // EDIT HERE
+
               onBlur={(e) => {
                 validateField(e);
               }}

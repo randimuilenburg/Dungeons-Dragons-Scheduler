@@ -23,7 +23,8 @@ const fs = require("fs");
 const app = express();
 const port = 4000;
 
-app.get("/api/profiles", (req, res) => {
+app.get("/api/profiles", "/api/profiles/:profileId", (req, res) => {
+  const { profileId } = req.params;
   fs.readFile("./src/data.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
@@ -32,7 +33,10 @@ app.get("/api/profiles", (req, res) => {
 
     try {
       const jsonData = JSON.parse(data);
-      return res.json(jsonData.players);
+      return res.json(jsonData);
+      // (instead of players, return the player ID instead that corresponds to the page you go
+      //   to localhost, and remember: parse is a string)
+      // (filter, use leetcode for method practice)
     } catch (error) {
       console.error(error);
       return res.status(500).send("Internal Server Error");
