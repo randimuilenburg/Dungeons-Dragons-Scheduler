@@ -23,7 +23,6 @@ const Views = () => {
         <Route path="landing" element={<WelcomeBack />} />
         <Route path="/main" element={<LandingPage />} />
         <Route path="profile" element={<Profile />} />
-        {/* <Route path="Profile" element={<Profile />} /> */}
         <Route path="friends" element={<Friends />} />
         <Route path="upcomingsessions" element={<UpcomingSessions />} />
         <Route path="logout" element={<LogOut />} />
