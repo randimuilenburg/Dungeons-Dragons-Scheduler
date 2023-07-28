@@ -3,7 +3,7 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Banner from "./components/Banner";
 import Header from "./components/Header";
-import Views from "./components/Views";
+import AppRoutes from "./components/AppRoutes";
 import LandingPage from "./components/LandingPage";
 import Profile from "./components/Profile";
 import Friends from "./components/Friends";
@@ -30,7 +30,7 @@ function App() {
           </Routes>
         </BrowserRouter>
         <Header />
-        <Views />
+        <AppRoutes />
       </React.Fragment>
     </div>
   );
