@@ -23,6 +23,10 @@ const fs = require("fs");
 const app = express();
 const port = 4000;
 
+function isNumericString(inputString) {
+  return /^\d+$/.test(inputString);
+}
+
 app.get("/api/profiles", (req, res) => {
   const { profileId } = req.params;
   fs.readFile("./src/data.json", "utf8", (err, data) => {
@@ -43,28 +47,40 @@ app.get("/api/profiles", (req, res) => {
 
 app.get("/api/profiles/:profileId", (req, res) => {
   const { profileId } = req.params;
-  // TODO: make a `intProfileId` = parseInt(profileId), add status code
+  const intProfileId = parseInt(profileId);
+  if (!isNumericString(profileId)) {
+    return res.status(400).send("Must select a profile number.");
+    // }
+  }
+
+  // }
+
+  // TODO: make a `intProfileId` varaible = parseInt(profileId) (turns player id into a string),
+  // if not, then return status code that you can't do that
   // TODO: add extra check for non-int values
   fs.readFile("./src/data.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
       return res.status(500).send("Internal Server Error");
-    }
+    } else {
+      try {
+        const jsonData = JSON.parse(data);
+        const profile = jsonData.players.find(
+          (players) => players.id === intProfileId
+        );
 
-    try {
-      const jsonData = JSON.parse(data);
-      const profile = jsonData.players.find(
-        (players) => players.id === profileId
-      );
+        if (!profile) {
+          return res.status(404).send("Profile not found");
+        }
 
-      if (!profile) {
-        return res.status(404).send("Profile not found");
+        return res.json(profile);
+      } catch (error) {
+        console.error(error);
+        return res.status(500).send("Internal Server Error");
       }
 
-      return res.json(profile);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send("Internal Server Error");
+      // if (intProfileId === "") {
+      //   return res.status(400).send("Must request profile number");
     }
   });
 });
