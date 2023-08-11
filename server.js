@@ -23,25 +23,7 @@ const fs = require("fs");
 const app = express();
 const port = 4000;
 
-// app.get("/api/profiles", (req, res) => {
-//   const { profileId } = req.params;
-//   fs.readFile("./src/data.json", "utf8", (err, data) => {
-//     if (err) {
-//       console.log(err);
-//       return res.status(500).send("Internal Server Error");
-//     }
-
-//     try {
-//       const jsonData = JSON.parse(data);
-//       return res.json(jsonData);
-//     } catch (error) {
-//       console.error(error);
-//       return res.status(500).send("Internal Server Error");
-//     }
-//   });
-// });
-
-app.get("/api/profiles/:profileId", (req, res) => {
+app.get("/api/profiles", (req, res) => {
   const { profileId } = req.params;
   fs.readFile("./src/data.json", "utf8", (err, data) => {
     if (err) {
@@ -51,7 +33,29 @@ app.get("/api/profiles/:profileId", (req, res) => {
 
     try {
       const jsonData = JSON.parse(data);
-      const profile = jsonData.find((players) => players.id === profileId);
+      return res.json(jsonData);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Internal Server Error");
+    }
+  });
+});
+
+app.get("/api/profiles/:profileId", (req, res) => {
+  const { profileId } = req.params;
+  // TODO: make a `intProfileId` = parseInt(profileId), add status code
+  // TODO: add extra check for non-int values
+  fs.readFile("./src/data.json", "utf8", (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send("Internal Server Error");
+    }
+
+    try {
+      const jsonData = JSON.parse(data);
+      const profile = jsonData.players.find(
+        (players) => players.id === profileId
+      );
 
       if (!profile) {
         return res.status(404).send("Profile not found");
