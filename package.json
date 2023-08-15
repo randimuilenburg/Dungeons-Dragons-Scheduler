@@ -22,7 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api-start": "node server.js"
+    "api-start": "node server.js",
+    "start-all": "react-scripts start & node server.js"
   },
   "eslintConfig": {
     "extends": [
