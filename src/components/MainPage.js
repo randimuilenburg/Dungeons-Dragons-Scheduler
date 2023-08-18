@@ -1,9 +1,14 @@
 import React from "react";
+
 import ReactDOM from "react-dom";
+import useFetch from "./DataFetching";
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Container } from "react-bootstrap";
 
-const welcomeHeader = () => {
+const WelcomeHeader = () => {
+  const { data, loading, error } = useFetch(
+    "http://localhost:4000/api/profiles"
+  );
   return (
     <div>
       <Container>
@@ -29,6 +34,13 @@ const welcomeHeader = () => {
             <LogInButton />
           </Col>
         </Row>
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error}</p>
+        ) : (
+          <ProfileList profiles={data} />
+        )}
       </Container>
     </div>
   );
@@ -44,4 +56,17 @@ const LogInButton = () => {
   );
 };
 
-export default welcomeHeader;
+const ProfileList = ({ profiles }) => {
+  return (
+    <div>
+      <h2>Profiles:</h2>
+      <ul>
+        {profiles.map((profile) => (
+          <li key={profile.id}>{profile.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default WelcomeHeader;

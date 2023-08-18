@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-const useFetch = require("./useFetch");
-const url = "<http://localhost:4000/api/profiles>";
-const { data, loading, error } = useFetch(url);
+// const useFetch = require("./useFetch");
+// const url = "<http://localhost:4000/api/profiles>";
+// const { data, loading, error } = useFetch(url);
 
 const useFetch = (url) => {
   const [data, setdata] = useState(null);
@@ -14,6 +14,10 @@ const useFetch = (url) => {
       .then((data) => {
         seterror(data.error);
         setdata(data);
+        setloading(false);
+      })
+      .catch((error) => {
+        seterror(error.message);
         setloading(false);
       });
   }, [url]);
