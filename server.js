@@ -1,8 +1,16 @@
 const express = require("express");
 const fs = require("fs");
+const cors = require("cors");
 
 const app = express();
 const port = 4000;
+
+app.use(
+  cors({
+    origin: "http://localhost:5000",
+    optionsSuccessStatus: 200,
+  })
+);
 
 function isNumericString(inputString) {
   return /^\d+$/.test(inputString);
