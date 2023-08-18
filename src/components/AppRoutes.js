@@ -21,7 +21,8 @@ const Views = () => {
         <Route path="register" element={<CreateNewUser />} />
         <Route path="reset" element={<ForgotPassword />} />
         <Route path="landing" element={<WelcomeBack />} />
-        <Route path="/main" element={<LandingPage />} />
+        {/* <Route path="/main" element={<LandingPage />} /> */}
+        <Route path="home" element={<MainPage />} />
         <Route path="profile" element={<Profile />} />
         <Route path="friends" element={<Friends />} />
         <Route path="upcomingsessions" element={<UpcomingSessions />} />
