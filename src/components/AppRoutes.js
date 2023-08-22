@@ -5,7 +5,7 @@ import ForgotPassword from "./PasswordReset";
 import CreateNewUser from "./Register";
 import WelcomeBack from "./LandingPage";
 import MainPage from "./MainPage";
-import LandingPage from "./LandingPage";
+// import LandingPage from "./LandingPage";
 import Profile from "./Profile";
 import Friends from "./Friends";
 import UpcomingSessions from "./UpcomingSessions";

@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 import { Button, Col, Row, Container } from "react-bootstrap";
 
 const WelcomeHeader = () => {
-  const { data, loading, error } = useFetch(
-    "http://localhost:4000/api/profiles"
-  );
+  const { data, loading, error } = useFetch("/api/profiles");
   return (
     <div>
       <Container>
@@ -39,7 +37,7 @@ const WelcomeHeader = () => {
         ) : error ? (
           <p>Error: {error}</p>
         ) : (
-          <ProfileList profiles={data} />
+          <ProfileList profiles={data.players} />
         )}
       </Container>
     </div>
@@ -68,5 +66,7 @@ const ProfileList = ({ profiles }) => {
     </div>
   );
 };
+
+// don't use map command on object
 
 export default WelcomeHeader;
