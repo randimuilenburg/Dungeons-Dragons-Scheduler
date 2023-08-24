@@ -1,12 +1,11 @@
 import React from "react";
-
 import ReactDOM from "react-dom";
 import useFetch from "./DataFetching";
 import { Link } from "react-router-dom";
 import { Button, Col, Row, Container } from "react-bootstrap";
 
 const WelcomeHeader = () => {
-  const { data, loading, error } = useFetch("/api/profiles");
+  // const { data, loading, error } = useFetch("/api/profiles");
   return (
     <div>
       <Container>
@@ -32,13 +31,13 @@ const WelcomeHeader = () => {
             <LogInButton />
           </Col>
         </Row>
-        {loading ? (
+        {/* {loading ? (
           <p>Loading...</p>
         ) : error ? (
           <p>Error: {error}</p>
         ) : (
           <ProfileList profiles={data.players} />
-        )}
+        )} */}
       </Container>
     </div>
   );
@@ -54,18 +53,18 @@ const LogInButton = () => {
   );
 };
 
-const ProfileList = ({ profiles }) => {
-  return (
-    <div>
-      <h2>Profiles:</h2>
-      <ul>
-        {profiles.map((profile) => (
-          <li key={profile.id}>{profile.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+// const ProfileList = ({ profiles }) => {
+//   return (
+//     <div>
+//       <h2>Profiles:</h2>
+//       <ul>
+//         {profiles.map((profile) => (
+//           <li key={profile.id}>{profile.name}</li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
 
 // don't use map command on object
 

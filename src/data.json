@@ -4,13 +4,17 @@
       "id": 1,
       "name": "Randi M",
       "character": "Rhubarb",
+      "character race": "Dragonborn",
+      "character class": "Barbarian",
       "email": "randiemail@gmail.com",
       "password": "RandiPassword"
     },
     {
       "id": 2,
       "name": "Spenser W",
-      "character": "Dungeon Master",
+      "character": "Diego",
+      "character race": "Tiefling",
+      "character class": "Druid",
       "email": "spenseremail@gmail.com",
       "password": "SpenserPassword"
     },
@@ -18,15 +22,26 @@
       "id": 3,
       "name": "Janey R",
       "character": "Theo",
+      "character race": "Dwarf",
+      "character class": "Bard",
       "email": "janeyemail@gmail.com",
       "password": "JaneyPassword"
     },
     {
       "id": 4,
       "name": "Josh M",
-      "character": "Xena",
+      "character": "Finnian",
+      "character race": "Halfling",
+      "character class": "Warlock",
       "email": "joshemail@gmail.com",
       "password": "JoshPassword"
+    },
+    {
+      "id": 5,
+      "name": "Tim S",
+      "character": "Dungeon Master",
+      "email": "timemail@gmail.com",
+      "password": "TimPassword"
     }
   ]
 }
