@@ -38,3 +38,8 @@ const ProfileList = ({ profiles }) => {
 };
 
 export default FriendsList;
+
+/* Next:
+Make profile pages clickable and they will display each user's data from the json
+Focus on the user's profile first!
+Model it after Jira's profile page, with a view and edit option each */
