@@ -3,7 +3,7 @@ import useFetch from "./DataFetching";
 import { Row, Col, Container } from "react-bootstrap";
 
 const FriendsList = () => {
-  const { data, loading, error } = useFetch("/api/profiles");
+  const { data, loading, error } = useFetch("/api/users");
   return (
     <div>
       <Container>

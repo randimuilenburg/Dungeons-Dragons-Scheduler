@@ -16,8 +16,8 @@ function isNumericString(inputString) {
   return /^\d+$/.test(inputString);
 }
 
-app.get("/api/profiles", (req, res) => {
-  const { profileId } = req.params;
+app.get("/api/users", (req, res) => {
+  const { userId } = req.params;
   fs.readFile("./src/data.json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
@@ -34,10 +34,10 @@ app.get("/api/profiles", (req, res) => {
   });
 });
 
-app.get("/api/profiles/:profileId", (req, res) => {
-  const { profileId } = req.params;
-  const intProfileId = parseInt(profileId);
-  if (!isNumericString(profileId)) {
+app.get("/api/users/:userId", (req, res) => {
+  const { userId } = req.params;
+  const intUserId = parseInt(userId);
+  if (!isNumericString(userId)) {
     return res
       .status(400)
       .send(
@@ -52,15 +52,13 @@ app.get("/api/profiles/:profileId", (req, res) => {
     } else {
       try {
         const jsonData = JSON.parse(data);
-        const profile = jsonData.users.find(
-          (users) => users.id === intProfileId
-        );
+        const user = jsonData.users.find((users) => users.id === intUserId);
 
-        if (!profile) {
+        if (!user) {
           return res.status(404).send("Profile not found");
         }
 
-        return res.json(profile);
+        return res.json(user);
       } catch (error) {
         console.error(error);
         return res.status(500).send("Internal Server Error");
