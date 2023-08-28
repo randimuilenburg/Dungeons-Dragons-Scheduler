@@ -15,7 +15,7 @@ const FriendsList = () => {
             ) : error ? (
               <p>Error: {error}</p>
             ) : (
-              <ProfileList profiles={data.users} />
+              <UsersList users={data.users} />
             )}
           </Col>
         </Row>
@@ -24,13 +24,13 @@ const FriendsList = () => {
   );
 };
 
-const ProfileList = ({ profiles }) => {
+const UsersList = ({ users }) => {
   return (
     <div>
       <h2>Profiles:</h2>
       <ul>
-        {profiles.map((profile) => (
-          <li key={profile.id}>{profile.name}</li>
+        {users.map((user) => (
+          <li key={user.id}>{user.name}</li>
         ))}
       </ul>
     </div>
