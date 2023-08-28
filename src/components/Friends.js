@@ -15,7 +15,7 @@ const FriendsList = () => {
             ) : error ? (
               <p>Error: {error}</p>
             ) : (
-              <ProfileList profiles={data.players} />
+              <ProfileList profiles={data.users} />
             )}
           </Col>
         </Row>

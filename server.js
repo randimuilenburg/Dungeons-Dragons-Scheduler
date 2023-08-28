@@ -52,8 +52,8 @@ app.get("/api/profiles/:profileId", (req, res) => {
     } else {
       try {
         const jsonData = JSON.parse(data);
-        const profile = jsonData.players.find(
-          (players) => players.id === intProfileId
+        const profile = jsonData.users.find(
+          (users) => users.id === intProfileId
         );
 
         if (!profile) {
