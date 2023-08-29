@@ -29,7 +29,7 @@ const Views = () => {
         <Route path="friends" element={<Friends />} />
         <Route path="upcomingsessions" element={<UpcomingSessions />} />
         <Route path="logout" element={<LogOut />} />
-        <Route path="/user/123" element={<Profile />} />
+        <Route path="/profile/:pageNumber" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

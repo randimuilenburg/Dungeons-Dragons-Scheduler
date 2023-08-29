@@ -7,12 +7,13 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 // Step 3: Add useFetch hook to get data for that user, ex. localhost:4000/api/users/8
 // Step 4: save that user data to state
 
-// NEEDS TO APPLY TO ANY NUMBER
-// sOME METHOD THAT SAYS WHATVEER URL IS, I WANT THAT, AND THEN .SPLIT FOR PROFILE
-
-const userPage = () => {
-  const url = "http://localhost:3000/user/123";
-  return <h1>Here is a USER 123'S profile!</h1>;
+let userPage = () => {
+  const currentUrl = window.location.href;
+  return (
+    <div>
+      <h1>The URL is {currentUrl}.</h1>
+    </div>
+  );
 };
 
 // FAILED:
