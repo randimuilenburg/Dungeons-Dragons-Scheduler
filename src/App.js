@@ -5,7 +5,7 @@ import Banner from "./components/Banner";
 import Header from "./components/Header";
 import AppRoutes from "./components/AppRoutes";
 import LandingPage from "./components/LandingPage";
-import Profile from "./components/Profile";
+import MyProfile from "./components/MyProfile";
 import Friends from "./components/Friends";
 import UpcomingSessions from "./components/UpcomingSessions";
 import LogOut from "./components/LogOut";

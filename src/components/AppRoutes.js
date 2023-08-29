@@ -6,29 +6,30 @@ import CreateNewUser from "./Register";
 import WelcomeBack from "./LandingPage";
 import MainPage from "./MainPage";
 // import LandingPage from "./LandingPage";
-import Profile from "./Profile";
+import MyProfile from "./MyProfile";
 import Friends from "./Friends";
 import UpcomingSessions from "./UpcomingSessions";
 import LogOut from "./LogOut";
-import Spenser from "./Spenser";
+import Profile from "./Profile";
 
 const Views = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route exact path="profile" element={<Profile />} />
+        {/* <Route exact path="account" element={<MyProfile />} /> */}
         <Route path="login" element={<LoggingInForm />} />
         <Route path="register" element={<CreateNewUser />} />
         <Route path="reset" element={<ForgotPassword />} />
         <Route path="landing" element={<WelcomeBack />} />
         {/* <Route path="/main" element={<LandingPage />} /> */}
         <Route path="home" element={<MainPage />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="myprofile" element={<MyProfile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="friends" element={<Friends />} />
         <Route path="upcomingsessions" element={<UpcomingSessions />} />
         <Route path="logout" element={<LogOut />} />
-        <Route path="/profiles/2" element={<Spenser />} />
+        <Route path="/user/123" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

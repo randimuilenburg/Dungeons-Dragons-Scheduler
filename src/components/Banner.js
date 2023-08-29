@@ -42,6 +42,7 @@ function BannerBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Nav className="me-auto">
           <Nav.Link href="/home">Home</Nav.Link>
+          <Nav.Link href="/myprofile">Account</Nav.Link>
           <Nav.Link href="/profile">Profile</Nav.Link>
           <Nav.Link href="/friends">Friends</Nav.Link>
           <Nav.Link href="/upcomingsessions">Upcoming Sessions</Nav.Link>
