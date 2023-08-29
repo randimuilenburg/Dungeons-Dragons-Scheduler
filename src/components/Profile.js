@@ -1,59 +1,60 @@
-import React, { useState, useSyncExternalStore } from "react";
-import useFetch from "./DataFetching";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
+// import useFetch from "./DataFetching";
+// import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-// DONE Step 1: h1 tag with url ex: <h1>localhost:3000/profiles/8</h1>
-// Step 2: now just the number ex: <h1>8</h1>
-// Step 3: Add useFetch hook to get data for that user, ex. localhost:4000/api/users/8
 // Step 4: save that user data to state
 
-let userPage = () => {
+const UserPage = () => {
   const currentUrl = window.location.href;
+  const currentUrlUser = currentUrl.split("/");
+  const lastPartCurrentUser = currentUrlUser[currentUrlUser.length - 1];
+
   return (
     <div>
-      <h1>The URL is {currentUrl}.</h1>
+      {/* <h1>This page is for user {lastPartCurrentUser}.</h1> */}
+      <FetchForProfile lastPartCurrentUser={lastPartCurrentUser} />
     </div>
   );
 };
 
-// FAILED:
-// const FetchUsers = () => {
-//   const { data, loading, error } = useFetch("/api/users");
-//   return (
-//     <div>
-//       <Container>
-//         <Row>
-//           <Col xs={12} lg={8}>
-//             <h3>View current players:</h3>
-//             {loading ? (
-//               <p>Loading...</p>
-//             ) : error ? (
-//               <p>Error: {error}</p>
-//             ) : (
-//               <UserPage users={data.users} />
-//             )}
-//           </Col>
-//         </Row>
-//       </Container>
-//     </div>
-//   );
-// };
+const FetchForProfile = ({ lastPartCurrentUser }) => {
+  const url = "http://localhost:4000/api/users/";
+  const [userData, setUserData] = useState(null);
 
-// const UserPage = (users) => {
-//   //   return <h1>This is NUMBER's user page!</h1>;
-//   const localhostUrl = "localhost:4000/users";
-//   return (
-//     <div>
-//       <h1>This is a profile for {localhostUrl}.</h1>;
-//       <ul>
-//         {users.ids.map((id) => (
-//           <li key={id}>
-//             <a href={`${localhostUrl}${id}`}>User's link</a>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`${url}${lastPartCurrentUser}`);
+        if (!response.ok) {
+          throw new Error("Network response worked!");
+        }
+        console.log(response);
+        const data = await response.json();
+        setUserData(data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
 
-export default userPage;
+    fetchUserData();
+  }, [lastPartCurrentUser]);
+
+  return (
+    <div>
+      {userData ? (
+        <div>
+          <p>Player name: {userData.name}</p>
+          <p>Character name: {userData.character}</p>
+          <p>Character race: {userData["character race"]}</p>
+          <p>Character class: {userData["character class"]}</p>
+          <p>Contact: {userData.email}</p>
+          <p>More data goes here...</p>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
+    </div>
+  );
+};
+
+export default UserPage;
