@@ -2,8 +2,6 @@ import React, { useState, useEffect, useSyncExternalStore } from "react";
 // import useFetch from "./DataFetching";
 // import { Container, Row, Col, Card, Button } from "react-bootstrap";
 
-// Step 4: save that user data to state
-
 const UserPage = () => {
   const currentUrl = window.location.href;
   const currentUrlUser = currentUrl.split("/");
@@ -11,7 +9,6 @@ const UserPage = () => {
 
   return (
     <div>
-      {/* <h1>This page is for user {lastPartCurrentUser}.</h1> */}
       <FetchForProfile lastPartCurrentUser={lastPartCurrentUser} />
     </div>
   );
@@ -24,12 +21,15 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`${url}${lastPartCurrentUser}`);
+        const fetchUrl = `${url}${lastPartCurrentUser}`;
+        const response = await fetch(fetchUrl);
+        console.log(fetchUrl);
         if (!response.ok) {
           throw new Error("Network response worked!");
         }
         console.log(response);
         const data = await response.json();
+        // {check for response code 404, display error msg accordingly}
         setUserData(data);
       } catch (error) {
         console.log("Error fetching data", error);
@@ -43,15 +43,21 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
     <div>
       {userData ? (
         <div>
-          <p>Player name: {userData.name}</p>
-          <p>Character name: {userData.character}</p>
-          <p>Character race: {userData["character race"]}</p>
-          <p>Character class: {userData["character class"]}</p>
-          <p>Contact: {userData.email}</p>
-          <p>More data goes here...</p>
+          <p>Player name: {userData.personalInfo.name}</p>
+          {userData.characters.map((character) => (
+            <div key={character.id}>
+              <p>Character name: {character.name}</p>
+              <p>Character nickname: {character.nickname}</p>
+              <p>Character race: {character.description.race}</p>
+              <p>Character class: {character.information.class}</p>
+            </div>
+          ))}
+          <p>Contact:</p>
+          <p>Email: {userData.personalInfo.contact.email}</p>
+          <p>Phone: {userData.personalInfo.contact.phone}</p>
         </div>
       ) : (
-        <p>Loading user data...</p>
+        <p>Looking for user data...</p>
       )}
     </div>
   );

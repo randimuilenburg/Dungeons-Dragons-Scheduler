@@ -1,47 +1,267 @@
-{
-  "users": [
-    {
-      "id": 1,
+[
+  {
+    "id": 1,
+    "personalInfo": {
       "name": "Randi M",
-      "character": "Rhubarb",
-      "character race": "Dragonborn",
-      "character class": "Barbarian",
-      "email": "randiemail@gmail.com",
-      "password": "RandiPassword"
+      "contact": {
+        "email": "randiemail@gmail.com",
+        "phone": "720-123-4567"
+      },
+      "availability": {
+        "availableMonday": "Yes",
+        "availableTuesday": "Yes",
+        "availableWednesday": "No",
+        "availableThursday": "No",
+        "availableFriday": "No",
+        "availableSaturday": "Yes",
+        "availableSunday": "Yes",
+        "timesAvailableMonday": "Evening",
+        "timesAvailableTuesday": "Evening",
+        "timesAvailableWednesday": null,
+        "timesAvailableThursday": null,
+        "timesAvailableFriday": null,
+        "timesAvailableSaturday": "Afternoon, Evening, Night",
+        "timesAvailableSunday": "Afternoon, Evening, Night"
+      },
+      "experience": {
+        "yearsPlaying": "1",
+        "numberOfCampaignsPlayed": "2",
+        "numberOfCurrentCampaigns": "0",
+        "numberOfCampaignsAsDm": "0"
+      },
+      "security": {
+        "password": "RandiPassword"
+      }
     },
-    {
-      "id": 2,
+    "characters": [
+      {
+        "id": 1,
+        "name": "Rhubarb Bellator Skyshocker",
+        "nickname": "Barb",
+        "description": {
+          "race": "Dragonborn",
+          "element": "Lightning"
+        },
+        "information": {
+          "class": "Barbarian",
+          "background": "Solider",
+          "skills": "Athletics, Intimidation, Perception",
+          "languages": "Draconic, Common",
+          "alignment": "Chaotic Good"
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "personalInfo": {
       "name": "Spenser W",
-      "character": "Diego",
-      "character race": "Tiefling",
-      "character class": "Paladin",
-      "email": "spenseremail@gmail.com",
-      "password": "SpenserPassword"
+      "contact": {
+        "email": "spenseremail@gmail.com",
+        "phone": "720-765-4321"
+      },
+      "availability": {
+        "availableMonday": "No",
+        "availableTuesday": "Yes",
+        "availableWednesday": "Yes",
+        "availableThursday": "Yes",
+        "availableFriday": "Yes",
+        "availableSaturday": "Yes",
+        "availableSunday": "No",
+        "timesAvailableMonday": null,
+        "timesAvailableTuesday": "Evening",
+        "timesAvailableWednesday": "Evening",
+        "timesAvailableThursday": "Evening",
+        "timesAvailableFriday": "Evening",
+        "timesAvailableSaturday": "Afternoon, Evening, Night",
+        "timesAvailableSunday": null
+      },
+      "experience": {
+        "yearsPlaying": "2",
+        "numberOfCampaignsPlayed": "3",
+        "numberOfCurrentCampaigns": "0",
+        "numberOfCampaignsAsDm": "2"
+      },
+      "security": {
+        "password": "SpenserPassword"
+      }
     },
-    {
-      "id": 3,
+    "characters": [
+      {
+        "id": 1,
+        "name": "Diego Ignatius Infernus",
+        "nickname": "Diego",
+        "description": {
+          "race": "Tiefling",
+          "element": "Fire"
+        },
+        "information": {
+          "class": "Paladan",
+          "background": "Urchin",
+          "skills": "Deception, Sleight of Hand, Stealth",
+          "languages": "Infernal, Common",
+          "alignment": "Chaotic Neutral"
+        }
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "personalInfo": {
       "name": "Janey R",
-      "character": "Theo",
-      "character race": "Dwarf",
-      "character class": "Bard",
-      "email": "janeyemail@gmail.com",
-      "password": "JaneyPassword"
+      "contact": {
+        "email": "janeyemail@gmail.com",
+        "phone": "720-000-0000"
+      },
+      "availability": {
+        "availableMonday": "Yes",
+        "availableTuesday": "Yes",
+        "availableWednesday": "Yes",
+        "availableThursday": "Yes",
+        "availableFriday": "No",
+        "availableSaturday": "Yes",
+        "availableSunday": "Yes",
+        "timesAvailableMonday": "Evening",
+        "timesAvailableTuesday": "Evening",
+        "timesAvailableWednesday": "Evening",
+        "timesAvailableThursday": "Evening",
+        "timesAvailableFriday": null,
+        "timesAvailableSaturday": "Afternoon, Evening, Night",
+        "timesAvailableSunday": "Afternoon, Evening, Night"
+      },
+      "experience": {
+        "yearsPlaying": "1",
+        "numberOfCampaignsPlayed": "1",
+        "numberOfCurrentCampaigns": "0",
+        "numberOfCampaignsAsDm": "0"
+      },
+      "security": {
+        "password": "JaneyPassword"
+      }
     },
-    {
-      "id": 4,
+    "characters": [
+      {
+        "id": 1,
+        "name": "Theodora Ironheart Stoneforge",
+        "nickname": "Theo",
+        "description": {
+          "race": "Dwarf",
+          "element": null
+        },
+        "information": {
+          "class": "Bard",
+          "background": "Sage",
+          "skills": "History, Performance, Survival",
+          "languages": "Dwarvish, Common",
+          "alignment": "Lawful Good"
+        }
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "personalInfo": {
       "name": "Josh M",
-      "character": "Finnian",
-      "character race": "Halfling",
-      "character class": "Warlock",
-      "email": "joshemail@gmail.com",
-      "password": "JoshPassword"
+      "contact": {
+        "email": "joshemail@gmail.com",
+        "phone": "720-111-1111"
+      },
+      "availability": {
+        "availableMonday": "Yes",
+        "availableTuesday": "Yes",
+        "availableWednesday": "No",
+        "availableThursday": "No",
+        "availableFriday": "Yes",
+        "availableSaturday": "Yes",
+        "availableSunday": "Yes",
+        "timesAvailableMonday": "Evening",
+        "timesAvailableTuesday": "Evening",
+        "timesAvailableWednesday": null,
+        "timesAvailableThursday": null,
+        "timesAvailableFriday": "Evening, Night",
+        "timesAvailableSaturday": "Afternoon, Evening, Night",
+        "timesAvailableSunday": "Afternoon, Evening, Night"
+      },
+      "experience": {
+        "yearsPlaying": "4",
+        "numberOfCampaignsPlayed": "6",
+        "numberOfCurrentCampaigns": "1",
+        "numberOfCampaignsAsDm": "0"
+      },
+      "security": {
+        "password": "JoshPassword"
+      }
     },
-    {
-      "id": 5,
+    "characters": [
+      {
+        "id": 1,
+        "name": "Finnian Thistlebrook Bristleburrow",
+        "nickname": "Finn",
+        "description": {
+          "race": "Halfling",
+          "element": null
+        },
+        "information": {
+          "class": "Warlock",
+          "background": "Noble",
+          "skills": "Animal Handling, Arcana, Medicine",
+          "languages": "Halfling, Common",
+          "alignment": "Lawful Neutral"
+        }
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "personalInfo": {
       "name": "Tim S",
-      "character": "Dungeon Master",
-      "email": "timemail@gmail.com",
-      "password": "TimPassword"
-    }
-  ]
-}
+      "contact": {
+        "email": "timemail@gmail.com",
+        "phone": "720-555-5555"
+      },
+      "availability": {
+        "availableMonday": "Yes",
+        "availableTuesday": "Yes",
+        "availableWednesday": "Yes",
+        "availableThursday": "Yes",
+        "availableFriday": "Yes",
+        "availableSaturday": "Yes",
+        "availableSunday": "Yes",
+        "timesAvailableMonday": "Evening",
+        "timesAvailableTuesday": "Evening",
+        "timesAvailableWednesday": "Evening",
+        "timesAvailableThursday": "Evening",
+        "timesAvailableFriday": "Evening, Night",
+        "timesAvailableSaturday": "Afternoon, Evening, Night",
+        "timesAvailableSunday": "Afternoon, Evening"
+      },
+      "experience": {
+        "yearsPlaying": "4",
+        "numberOfCampaignsPlayed": "5",
+        "numberOfCurrentCampaigns": "1",
+        "numberOfCampaignsAsDm": "2"
+      },
+      "security": {
+        "password": "TimPassword"
+      }
+    },
+    "characters": [
+      {
+        "id": 1,
+        "name": "Aricen Silverthorne",
+        "nickname": "Ari",
+        "description": {
+          "race": "Elf",
+          "element": null
+        },
+        "information": {
+          "class": "Rogue",
+          "background": "Criminal",
+          "skills": "Insight, Investigation, Stealth",
+          "languages": "Elvish, Common",
+          "alignment": "Chaotic Evil"
+        }
+      }
+    ]
+  }
+]

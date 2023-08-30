@@ -35,6 +35,7 @@ app.get("/api/users", (req, res) => {
 });
 
 app.get("/api/users/:userId", (req, res) => {
+  console.log("ho");
   const { userId } = req.params;
   const intUserId = parseInt(userId);
   if (!isNumericString(userId)) {
@@ -47,12 +48,11 @@ app.get("/api/users/:userId", (req, res) => {
 
   fs.readFile("./src/data.json", "utf8", (err, data) => {
     if (err) {
-      console.log(err);
       return res.status(500).send("Internal Server Error");
     } else {
       try {
         const jsonData = JSON.parse(data);
-        const user = jsonData.users.find((users) => users.id === intUserId);
+        const user = jsonData.find((users) => users.id === intUserId);
 
         if (!user) {
           return res.status(404).send("Profile not found");
