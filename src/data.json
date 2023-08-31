@@ -249,7 +249,8 @@
           "dungeonMaster": "Tim S",
           "meetingFrequency": "weekly",
           "meetingDay": "Saturday",
-          "meetingTime": "Evening"
+          "meetingTime": "Evening",
+          "isActive": true
         },
         {
           "id": "2",
@@ -259,7 +260,8 @@
           "dungeonMaster": "Spenser W",
           "meetingFrequency": "monthly",
           "meetingDay": "Friday",
-          "meetingTime": "evening"
+          "meetingTime": "evening",
+          "isActive": false
         },
         {
           "id": "3",
@@ -269,7 +271,8 @@
           "dungeonMaster": "Tim S",
           "meetingFrequency": "monthly",
           "meetingDay": "Saturday",
-          "meetingTime": "night"
+          "meetingTime": "night",
+          "isActive": false
         }
       ]
     }
