@@ -1,0 +1,14 @@
+// user
+
+{
+  "name": "string",
+  "age": "number",
+  "campaigns": [campaign, campaign]
+}
+
+// campaign
+
+{
+    "id": "string",
+    ""
+}
