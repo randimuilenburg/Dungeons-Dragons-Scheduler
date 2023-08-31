@@ -6,43 +6,33 @@
       "contact": {
         "email": "randiemail@gmail.com",
         "phone": "720-123-4567"
-      },
-      "availability": {
-        "availableMonday": "Yes",
-        "availableTuesday": "Yes",
-        "availableWednesday": "No",
-        "availableThursday": "No",
-        "availableFriday": "No",
-        "availableSaturday": "Yes",
-        "availableSunday": "Yes",
-        "timesAvailableMonday": "Evening",
-        "timesAvailableTuesday": "Evening",
-        "timesAvailableWednesday": null,
-        "timesAvailableThursday": null,
-        "timesAvailableFriday": null,
-        "timesAvailableSaturday": "Afternoon, Evening, Night",
-        "timesAvailableSunday": "Afternoon, Evening, Night"
-      },
-      "experience": {
-        "yearsPlaying": "1",
-        "numberOfCampaignsPlayed": "2",
-        "numberOfCurrentCampaigns": "0",
-        "numberOfCampaignsAsDm": "0"
-      },
-      "security": {
-        "password": "RandiPassword"
       }
+    },
+    "playerAvailability": {
+      "monday": [],
+      "tuesday": ["evening"],
+      "wednesday": [],
+      "thursday": ["evening"],
+      "friday": ["evening", "night"],
+      "saturday": ["afternoon", "evening", "night"],
+      "sunday": ["afternoon", "evening"]
+    },
+    "playerExperience": {
+      "yearsPlaying": 1,
+      "numberOfCampaignsPlayed": 2,
+      "numberOfCurrentCampaigns": 0,
+      "numberOfCampaignsAsDm": 0
+    },
+    "security": {
+      "password": "RandiPassword"
     },
     "characters": [
       {
         "id": 1,
         "name": "Rhubarb Bellator Skyshocker",
         "nickname": "Barb",
-        "description": {
-          "race": "Dragonborn",
-          "element": "Lightning"
-        },
         "information": {
+          "race": "Dragonborn",
           "class": "Barbarian",
           "background": "Solider",
           "skills": "Athletics, Intimidation, Perception",
@@ -59,43 +49,33 @@
       "contact": {
         "email": "spenseremail@gmail.com",
         "phone": "720-765-4321"
-      },
-      "availability": {
-        "availableMonday": "No",
-        "availableTuesday": "Yes",
-        "availableWednesday": "Yes",
-        "availableThursday": "Yes",
-        "availableFriday": "Yes",
-        "availableSaturday": "Yes",
-        "availableSunday": "No",
-        "timesAvailableMonday": null,
-        "timesAvailableTuesday": "Evening",
-        "timesAvailableWednesday": "Evening",
-        "timesAvailableThursday": "Evening",
-        "timesAvailableFriday": "Evening",
-        "timesAvailableSaturday": "Afternoon, Evening, Night",
-        "timesAvailableSunday": null
-      },
-      "experience": {
-        "yearsPlaying": "2",
-        "numberOfCampaignsPlayed": "3",
-        "numberOfCurrentCampaigns": "0",
-        "numberOfCampaignsAsDm": "2"
-      },
-      "security": {
-        "password": "SpenserPassword"
       }
+    },
+    "playerAvailability": {
+      "monday": [],
+      "tuesday": ["evening"],
+      "wednesday": ["evening"],
+      "thursday": ["evening"],
+      "friday": ["evening"],
+      "saturday": ["afternoon", "evening", "night"],
+      "sunday": ["afternoon", "evening"]
+    },
+    "playerExperience": {
+      "yearsPlaying": 2,
+      "numberOfCampaignsPlayed": 3,
+      "numberOfCurrentCampaigns": 0,
+      "numberOfCampaignsAsDm": 2
+    },
+    "security": {
+      "password": "SpenserPassword"
     },
     "characters": [
       {
         "id": 1,
         "name": "Diego Ignatius Infernus",
         "nickname": "Diego",
-        "description": {
-          "race": "Tiefling",
-          "element": "Fire"
-        },
         "information": {
+          "race": "Tiefling",
           "class": "Paladan",
           "background": "Urchin",
           "skills": "Deception, Sleight of Hand, Stealth",
@@ -112,43 +92,33 @@
       "contact": {
         "email": "janeyemail@gmail.com",
         "phone": "720-000-0000"
-      },
-      "availability": {
-        "availableMonday": "Yes",
-        "availableTuesday": "Yes",
-        "availableWednesday": "Yes",
-        "availableThursday": "Yes",
-        "availableFriday": "No",
-        "availableSaturday": "Yes",
-        "availableSunday": "Yes",
-        "timesAvailableMonday": "Evening",
-        "timesAvailableTuesday": "Evening",
-        "timesAvailableWednesday": "Evening",
-        "timesAvailableThursday": "Evening",
-        "timesAvailableFriday": null,
-        "timesAvailableSaturday": "Afternoon, Evening, Night",
-        "timesAvailableSunday": "Afternoon, Evening, Night"
-      },
-      "experience": {
-        "yearsPlaying": "1",
-        "numberOfCampaignsPlayed": "1",
-        "numberOfCurrentCampaigns": "0",
-        "numberOfCampaignsAsDm": "0"
-      },
-      "security": {
-        "password": "JaneyPassword"
       }
+    },
+    "playerAvailability": {
+      "monday": ["evening"],
+      "tuesday": ["evening"],
+      "wednesday": ["evening"],
+      "thursday": ["evening", "night"],
+      "friday": [],
+      "saturday": ["afternoon", "evening", "night"],
+      "sunday": ["afternoon", "evening", "night"]
+    },
+    "playerExperience": {
+      "yearsPlaying": "1",
+      "numberOfCampaignsPlayed": "1",
+      "numberOfCurrentCampaigns": "0",
+      "numberOfCampaignsAsDm": "0"
+    },
+    "security": {
+      "password": "JaneyPassword"
     },
     "characters": [
       {
         "id": 1,
         "name": "Theodora Ironheart Stoneforge",
         "nickname": "Theo",
-        "description": {
-          "race": "Dwarf",
-          "element": null
-        },
         "information": {
+          "race": "Dwarf",
           "class": "Bard",
           "background": "Sage",
           "skills": "History, Performance, Survival",
@@ -165,32 +135,25 @@
       "contact": {
         "email": "joshemail@gmail.com",
         "phone": "720-111-1111"
-      },
-      "availability": {
-        "availableMonday": "Yes",
-        "availableTuesday": "Yes",
-        "availableWednesday": "No",
-        "availableThursday": "No",
-        "availableFriday": "Yes",
-        "availableSaturday": "Yes",
-        "availableSunday": "Yes",
-        "timesAvailableMonday": "Evening",
-        "timesAvailableTuesday": "Evening",
-        "timesAvailableWednesday": null,
-        "timesAvailableThursday": null,
-        "timesAvailableFriday": "Evening, Night",
-        "timesAvailableSaturday": "Afternoon, Evening, Night",
-        "timesAvailableSunday": "Afternoon, Evening, Night"
-      },
-      "experience": {
-        "yearsPlaying": "4",
-        "numberOfCampaignsPlayed": "6",
-        "numberOfCurrentCampaigns": "1",
-        "numberOfCampaignsAsDm": "0"
-      },
-      "security": {
-        "password": "JoshPassword"
       }
+    },
+    "playerAvailability": {
+      "monday": ["morning"],
+      "tuesday": ["morning", "evening"],
+      "wednesday": [],
+      "thursday": [],
+      "friday": ["morning", "evening", "night"],
+      "saturday": ["morning", "afternoon", "evening", "night"],
+      "sunday": []
+    },
+    "playerExperience": {
+      "yearsPlaying": "4",
+      "numberOfCampaignsPlayed": "6",
+      "numberOfCurrentCampaigns": "1",
+      "numberOfCampaignsAsDm": "0"
+    },
+    "security": {
+      "password": "JoshPassword"
     },
     "characters": [
       {
@@ -198,10 +161,10 @@
         "name": "Finnian Thistlebrook Bristleburrow",
         "nickname": "Finn",
         "description": {
-          "race": "Halfling",
           "element": null
         },
         "information": {
+          "race": "Halfling",
           "class": "Warlock",
           "background": "Noble",
           "skills": "Animal Handling, Arcana, Medicine",
@@ -218,43 +181,33 @@
       "contact": {
         "email": "timemail@gmail.com",
         "phone": "720-555-5555"
-      },
-      "availability": {
-        "availableMonday": "Yes",
-        "availableTuesday": "Yes",
-        "availableWednesday": "Yes",
-        "availableThursday": "Yes",
-        "availableFriday": "Yes",
-        "availableSaturday": "Yes",
-        "availableSunday": "Yes",
-        "timesAvailableMonday": "Evening",
-        "timesAvailableTuesday": "Evening",
-        "timesAvailableWednesday": "Evening",
-        "timesAvailableThursday": "Evening",
-        "timesAvailableFriday": "Evening, Night",
-        "timesAvailableSaturday": "Afternoon, Evening, Night",
-        "timesAvailableSunday": "Afternoon, Evening"
-      },
-      "experience": {
-        "yearsPlaying": "4",
-        "numberOfCampaignsPlayed": "5",
-        "numberOfCurrentCampaigns": "1",
-        "numberOfCampaignsAsDm": "2"
-      },
-      "security": {
-        "password": "TimPassword"
       }
+    },
+    "playerAvailability": {
+      "monday": ["evening"],
+      "tuesday": ["evening"],
+      "wednesday": ["evening"],
+      "thursday": ["evening"],
+      "friday": ["evening", "night"],
+      "saturday": ["morning", "afternoon", "evening", "night"],
+      "sunday": ["morning", "afternoon", "evening"]
+    },
+    "playerExperience": {
+      "yearsPlaying": "4",
+      "numberOfCampaignsPlayed": "5",
+      "numberOfCurrentCampaigns": "1",
+      "numberOfCampaignsAsDm": "2"
+    },
+    "security": {
+      "password": "TimPassword"
     },
     "characters": [
       {
         "id": 1,
         "name": "Aricen Silverthorne",
         "nickname": "Ari",
-        "description": {
-          "race": "Elf",
-          "element": null
-        },
         "information": {
+          "race": "Elf",
           "class": "Rogue",
           "background": "Criminal",
           "skills": "Insight, Investigation, Stealth",
