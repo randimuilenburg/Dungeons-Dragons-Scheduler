@@ -68,14 +68,28 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
               <Card className="mb-4">
                 <Card.Body className="text-center">
                   <Card.Img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    src={require("../Images/Randiplayerimg.jpg")}
                     alt="avatar"
                     className="rounded-circle"
                     style={{ width: "150px" }}
                     fluid
                   />
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                  <p className="text-muted mb-1">
+                    Years of experience:{" "}
+                    {userData.playerExperience.yearsPlaying}
+                  </p>
+                  <p className="text-muted mb-1">
+                    Campaigns played:{" "}
+                    {userData.playerExperience.numberOfCampaignsPlayed}{" "}
+                  </p>
+                  <p className="text-muted mb-1">
+                    Campaigns completed:{" "}
+                    {userData.playerExperience.numberOfCampaignsPlayed}{" "}
+                  </p>
+                  <p className="text-muted mb-1">
+                    Campaigns in progress:
+                    {userData.playerExperience.numberOfCurrentCampaigns}{" "}
+                  </p>
                   <div className="d-flex justify-content-center mb-2">
                     <Button>Follow</Button>
                     <Button variant="outline-primary" className="ms-1">
@@ -90,35 +104,49 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   <ListGroup flush className="rounded-3">
                     <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
                       <i className="fas fa-globe fa-lg text-warning"></i>
-                      <span>https://mdbootstrap.com</span>
+                      <span>Monday</span>
                     </ListGroup.Item>
                     <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
                       <i
                         className="fab fa-github fa-lg"
                         style={{ color: "#333333" }}
                       ></i>
-                      <span>mdbootstrap</span>
+                      <span>Tuesday</span>
                     </ListGroup.Item>
                     <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
                       <i
                         className="fab fa-twitter fa-lg"
                         style={{ color: "#55acee" }}
                       ></i>
-                      <span>@mdbootstrap</span>
+                      <span>Wednesday</span>
                     </ListGroup.Item>
                     <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
                       <i
                         className="fab fa-instagram fa-lg"
                         style={{ color: "#ac2bac" }}
                       ></i>
-                      <span>mdbootstrap</span>
+                      <span>Thursday</span>
                     </ListGroup.Item>
                     <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
                       <i
                         className="fab fa-facebook fa-lg"
                         style={{ color: "#3b5998" }}
                       ></i>
-                      <span>mdbootstrap</span>
+                      <span>Friday</span>
+                    </ListGroup.Item>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                      <i
+                        className="fab fa-facebook fa-lg"
+                        style={{ color: "#3b5998" }}
+                      ></i>
+                      <span>Saturday</span>
+                    </ListGroup.Item>
+                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                      <i
+                        className="fab fa-facebook fa-lg"
+                        style={{ color: "#3b5998" }}
+                      ></i>
+                      <span>Sunday</span>
                     </ListGroup.Item>
                   </ListGroup>
                 </Card.Body>
@@ -144,7 +172,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     </Col>
                     <Col sm="9">
                       <Card.Text className="text-muted">
-                        example@example.com
+                        {userData.personalInfo.contact.email}
                       </Card.Text>
                     </Col>
                   </Row>
@@ -155,29 +183,18 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     </Col>
                     <Col sm="9">
                       <Card.Text className="text-muted">
-                        (097) 234-5678
+                        {userData.personalInfo.contact.phone}
                       </Card.Text>
                     </Col>
                   </Row>
                   <hr />
                   <Row>
                     <Col sm="3">
-                      <Card.Text>Mobile</Card.Text>
+                      <Card.Text>Characters</Card.Text>
                     </Col>
                     <Col sm="9">
                       <Card.Text className="text-muted">
-                        (098) 765-4321
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Address</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        Bay Area, San Francisco, CA
+                        {userData.characters.map((character) => character.name)}
                       </Card.Text>
                     </Col>
                   </Row>
