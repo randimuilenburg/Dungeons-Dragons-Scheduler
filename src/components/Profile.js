@@ -48,7 +48,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
             <div key={character.id}>
               <p>Character name: {character.name}</p>
               <p>Character nickname: {character.nickname}</p>
-              <p>Character race: {character.description.race}</p>
+              <p>Character race: {character.information.race}</p>
               <p>Character class: {character.information.class}</p>
             </div>
           ))}

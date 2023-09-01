@@ -30,7 +30,7 @@ const UsersList = ({ users }) => {
       <h2>Profiles:</h2>
       <ul>
         {users.map((user) => (
-          <li key={user.id}>{user.personalInfo.name}</li>
+          <li key={user.id}>{`${user.personalInfo}`}</li>
         ))}
       </ul>
     </div>

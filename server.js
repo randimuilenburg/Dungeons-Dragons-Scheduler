@@ -35,9 +35,8 @@ app.get("/api/users", (req, res) => {
 });
 
 app.get("/api/users/:userId", (req, res) => {
-  console.log("ho");
   const { userId } = req.params;
-  const intUserId = parseInt(userId);
+  // const intUserId = parseInt(userId);
   if (!isNumericString(userId)) {
     return res
       .status(400)
@@ -52,7 +51,7 @@ app.get("/api/users/:userId", (req, res) => {
     } else {
       try {
         const jsonData = JSON.parse(data);
-        const user = jsonData.find((users) => users.id === intUserId);
+        const user = jsonData.find((users) => users.id === userId);
 
         if (!user) {
           return res.status(404).send("Profile not found");

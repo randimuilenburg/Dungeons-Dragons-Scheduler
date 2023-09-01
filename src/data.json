@@ -44,51 +44,47 @@
         }
       }
     ],
-    "campaigns": ["1", "2"]
-  },
-  [
-    {
-      "campaigns": [
-        {
-          "id": "1",
-          "numberOfPlayers": 5,
-          "campaignPlayers": [
-            "Randi M",
-            "Spenser S",
-            "Janey R",
-            "Josh M",
-            "Tim S"
-          ],
-          "length": "medium",
-          "dungeonMaster": "Tim S",
-          "meetingFrequency": "weekly",
-          "meetingDay": "Saturday",
-          "meetingTime": "Evening",
-          "isActive": true
-        },
-        {
-          "id": "2",
-          "numberOfPlayers": 4,
-          "campaignPlayers": ["Randi M", "Spenser S", "Janey R", "Josh M"],
-          "length": "short",
-          "dungeonMaster": "Spenser W",
-          "meetingFrequency": "monthly",
-          "meetingDay": "Friday",
-          "meetingTime": "evening",
-          "isActive": false
-        },
-        {
-          "id": "3",
-          "numberOfPlayers": 3,
-          "campaignPlayers": ["Spenser S", "Josh M", "Tim S"],
-          "length": "short",
-          "dungeonMaster": "Tim S",
-          "meetingFrequency": "monthly",
-          "meetingDay": "Saturday",
-          "meetingTime": "night",
-          "isActive": false
-        }
-      ]
-    }
-  ]
+
+    "campaigns": [
+      {
+        "id": "1",
+        "numberOfPlayers": 5,
+        "campaignPlayers": [
+          "Randi M",
+          "Spenser S",
+          "Janey R",
+          "Josh M",
+          "Tim S"
+        ],
+        "length": "medium",
+        "dungeonMaster": "Tim S",
+        "meetingFrequency": "weekly",
+        "meetingDay": "Saturday",
+        "meetingTime": "Evening",
+        "isActive": true
+      },
+      {
+        "id": "2",
+        "numberOfPlayers": 4,
+        "campaignPlayers": ["Randi M", "Spenser S", "Janey R", "Josh M"],
+        "length": "short",
+        "dungeonMaster": "Spenser W",
+        "meetingFrequency": "monthly",
+        "meetingDay": "Friday",
+        "meetingTime": "evening",
+        "isActive": false
+      },
+      {
+        "id": "3",
+        "numberOfPlayers": 3,
+        "campaignPlayers": ["Spenser S", "Josh M", "Tim S"],
+        "length": "short",
+        "dungeonMaster": "Tim S",
+        "meetingFrequency": "monthly",
+        "meetingDay": "Saturday",
+        "meetingTime": "night",
+        "isActive": false
+      }
+    ]
+  }
 ]
