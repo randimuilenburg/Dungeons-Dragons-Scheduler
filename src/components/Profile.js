@@ -98,56 +98,27 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   </div>
                 </Card.Body>
               </Card>
-
               <Card className="mb-4 mb-lg-0">
                 <Card.Body className="p-0">
                   <ListGroup flush className="rounded-3">
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i className="fas fa-globe fa-lg text-warning"></i>
-                      <span>Monday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-github fa-lg"
-                        style={{ color: "#333333" }}
-                      ></i>
-                      <span>Tuesday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-twitter fa-lg"
-                        style={{ color: "#55acee" }}
-                      ></i>
-                      <span>Wednesday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-instagram fa-lg"
-                        style={{ color: "#ac2bac" }}
-                      ></i>
-                      <span>Thursday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-facebook fa-lg"
-                        style={{ color: "#3b5998" }}
-                      ></i>
-                      <span>Friday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-facebook fa-lg"
-                        style={{ color: "#3b5998" }}
-                      ></i>
-                      <span>Saturday</span>
-                    </ListGroup.Item>
-                    <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
-                      <i
-                        className="fab fa-facebook fa-lg"
-                        style={{ color: "#3b5998" }}
-                      ></i>
-                      <span>Sunday</span>
-                    </ListGroup.Item>
+                    {Object.keys(userData.playerAvailability).map((day) => (
+                      <ListGroup.Item
+                        key={day}
+                        className="d-flex justify-content-between align-items-center p-3"
+                      >
+                        <i
+                          className={`fab ${
+                            userData.playerAvailability[day]
+                              ? "fa-check text-primary"
+                              : "fa-times text-danger"
+                          } fa-lg`}
+                        ></i>
+                        <span>
+                          {day.charAt(0).toUpperCase() +
+                            day.slice(1).toLowerCase()}
+                        </span>
+                      </ListGroup.Item>
+                    ))}
                   </ListGroup>
                 </Card.Body>
               </Card>
