@@ -1,121 +1,265 @@
 import React, { useState } from "react";
 import useFetch from "./DataFetching";
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Breadcrumb,
+  Card,
+  Button,
+  ProgressBar,
+  ListGroup,
+} from "react-bootstrap";
 
-// Step 1: h1 tag with url ex: <h1>localhost:3000/profiles/8</h1>
-// Step 2: now just the number ex: <h1>8</h1>
-// Step 3: Add useFetch hook to get data for that user, ex. localhost:4000/api/users/8
-// Step 4: save that user data to state
+// DONT USE THIS RIGHT NOW
 
-// const MyProfile = () => {
+// const FetchUsersForProfiles = () => {
 //   const { data, loading, error } = useFetch("/api/users");
-export default function EditButton() {
+//   return (
+//     <div>
+//       <Container>
+//         <Row>
+//           <Col xs={12} lg={8}>
+//             <h3>View current players:</h3>
+//             {loading ? (
+//               <p>Loading...</p>
+//             ) : error ? (
+//               <p>Error: {error}</p>
+//             ) : (
+//               <UsersList users={data} />
+//             )}
+//           </Col>
+//         </Row>
+//       </Container>
+//     </div>
+//   );
+// };
+
+const userProfile = () => {
   return (
-    <div className="gradient-custom-2" style={{ backgroundColor: "white" }}>
-      <Container className="py-5 h-100">
-        <Row className="justify-content-center align-items-center h-100">
-          <Col lg="9" xl="7">
-            <Card>
-              <div
-                className="rounded-top text-white d-flex flex-row"
-                style={{ backgroundColor: "#000", height: "200px" }}
-              >
-                <div
-                  className="ms-4 mt-5 d-flex flex-column"
+    <section style={{ backgroundColor: "#eee" }}>
+      <Container className="py-5">
+        <Row>
+          <Col>
+            <Breadcrumb className="bg-light rounded-3 p-3 mb-4">
+              <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
+              <Breadcrumb.Item href="#">User</Breadcrumb.Item>
+              <Breadcrumb.Item active>User Profile</Breadcrumb.Item>
+            </Breadcrumb>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col lg="4">
+            <Card className="mb-4">
+              <Card.Body className="text-center">
+                <Card.Img
+                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                  alt="avatar"
+                  className="rounded-circle"
                   style={{ width: "150px" }}
-                >
-                  <Card.Img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                    alt="Generic placeholder image"
-                    className="mt-4 mb-2 img-thumbnail"
-                    fluid
-                    style={{ width: "150px", zIndex: "1" }}
-                  />
-                  <Button
-                    variant="outline-dark"
-                    style={{ height: "36px", overflow: "visible" }}
-                  >
-                    Edit profile
+                  fluid
+                />
+                <p className="text-muted mb-1">Full Stack Developer</p>
+                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                <div className="d-flex justify-content-center mb-2">
+                  <Button>Follow</Button>
+                  <Button variant="outline-primary" className="ms-1">
+                    Message
                   </Button>
                 </div>
-                <div className="ms-3" style={{ marginTop: "130px" }}>
-                  <h5>My Profile</h5>
-                  <p>New York</p>
-                </div>
-              </div>
-              <div
-                className="p-4 text-black"
-                // style={{ backgroundColor: "white" }}
-              >
-                <div className="d-flex justify-content-end text-center py-1">
-                  <div>
-                    <p className="mb-1 h5">253</p>
-                    <p className="small text-muted mb-0">Photos</p>
-                  </div>
-                  <div className="px-3">
-                    <p className="mb-1 h5">1026</p>
-                    <p className="small text-muted mb-0">Followers</p>
-                  </div>
-                  <div>
-                    <p className="mb-1 h5">478</p>
-                    <p className="small text-muted mb-0">Following</p>
-                  </div>
-                </div>
-              </div>
-              <Card.Body className="text-black p-4">
-                <div className="mb-5">
-                  <p className="lead fw-normal mb-1">About</p>
-                  <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
-                    <p className="font-italic mb-1">Web Developer</p>
-                    <p className="font-italic mb-1">Lives in New York</p>
-                    <p className="font-italic mb-0">Photographer</p>
-                  </div>
-                </div>
-                <div className="d-flex justify-content-between align-items-center mb-4">
-                  <p className="lead fw-normal mb-0">Recent photos</p>
-                  <p className="mb-0">
-                    <a href="#!" className="text-muted">
-                      Show all
-                    </a>
-                  </p>
-                </div>
+              </Card.Body>
+            </Card>
+
+            <Card className="mb-4 mb-lg-0">
+              <Card.Body className="p-0">
+                <ListGroup flush className="rounded-3">
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                    <i className="fas fa-globe fa-lg text-warning"></i>
+                    <span>https://mdbootstrap.com</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                    <i
+                      className="fab fa-github fa-lg"
+                      style={{ color: "#333333" }}
+                    ></i>
+                    <span>mdbootstrap</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                    <i
+                      className="fab fa-twitter fa-lg"
+                      style={{ color: "#55acee" }}
+                    ></i>
+                    <span>@mdbootstrap</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                    <i
+                      className="fab fa-instagram fa-lg"
+                      style={{ color: "#ac2bac" }}
+                    ></i>
+                    <span>mdbootstrap</span>
+                  </ListGroup.Item>
+                  <ListGroup.Item className="d-flex justify-content-between align-items-center p-3">
+                    <i
+                      className="fab fa-facebook fa-lg"
+                      style={{ color: "#3b5998" }}
+                    ></i>
+                    <span>mdbootstrap</span>
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col lg="8">
+            <Card className="mb-4">
+              <Card.Body>
                 <Row>
-                  <Col className="mb-2">
-                    <Card.Img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(112).webp"
-                      alt="image 1"
-                      className="w-100 rounded-3"
-                    />
+                  <Col sm="3">
+                    <Card.Text>Full Name</Card.Text>
                   </Col>
-                  <Col className="mb-2">
-                    <Card.Img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(107).webp"
-                      alt="image 1"
-                      className="w-100 rounded-3"
-                    />
+                  <Col sm="9">
+                    <Card.Text className="text-muted">Johnatan Smith</Card.Text>
                   </Col>
                 </Row>
-                <Row className="g-2">
-                  <Col className="mb-2">
-                    <Card.Img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(108).webp"
-                      alt="image 1"
-                      className="w-100 rounded-3"
-                    />
+                <hr />
+                <Row>
+                  <Col sm="3">
+                    <Card.Text>Email</Card.Text>
                   </Col>
-                  <Col className="mb-2">
-                    <Card.Img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/Lightbox/Original/img%20(114).webp"
-                      alt="image 1"
-                      className="w-100 rounded-3"
-                    />
+                  <Col sm="9">
+                    <Card.Text className="text-muted">
+                      example@example.com
+                    </Card.Text>
+                  </Col>
+                </Row>
+                <hr />
+                <Row>
+                  <Col sm="3">
+                    <Card.Text>Phone</Card.Text>
+                  </Col>
+                  <Col sm="9">
+                    <Card.Text className="text-muted">(097) 234-5678</Card.Text>
+                  </Col>
+                </Row>
+                <hr />
+                <Row>
+                  <Col sm="3">
+                    <Card.Text>Mobile</Card.Text>
+                  </Col>
+                  <Col sm="9">
+                    <Card.Text className="text-muted">(098) 765-4321</Card.Text>
+                  </Col>
+                </Row>
+                <hr />
+                <Row>
+                  <Col sm="3">
+                    <Card.Text>Address</Card.Text>
+                  </Col>
+                  <Col sm="9">
+                    <Card.Text className="text-muted">
+                      Bay Area, San Francisco, CA
+                    </Card.Text>
                   </Col>
                 </Row>
               </Card.Body>
             </Card>
+
+            <Row>
+              <Col md="6">
+                <Card className="mb-4 mb-md-0">
+                  <Card.Body>
+                    <Card.Text className="mb-4">
+                      <span className="text-primary font-italic me-1">
+                        assignment
+                      </span>{" "}
+                      Project Status
+                    </Card.Text>
+                    <Card.Text className="mb-1" style={{ fontSize: ".77rem" }}>
+                      Web Design
+                    </Card.Text>
+                    <ProgressBar now={80} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Website Markup
+                    </Card.Text>
+                    <ProgressBar now={72} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      One Page
+                    </Card.Text>
+                    <ProgressBar now={89} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Mobile Template
+                    </Card.Text>
+                    <ProgressBar now={55} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Backend API
+                    </Card.Text>
+                    <ProgressBar now={66} />
+                  </Card.Body>
+                </Card>
+              </Col>
+
+              <Col md="6">
+                <Card className="mb-4 mb-md-0">
+                  <Card.Body>
+                    <Card.Text className="mb-4">
+                      <span className="text-primary font-italic me-1">
+                        assignment
+                      </span>{" "}
+                      Project Status
+                    </Card.Text>
+                    <Card.Text className="mb-1" style={{ fontSize: ".77rem" }}>
+                      Web Design
+                    </Card.Text>
+                    <ProgressBar now={80} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Website Markup
+                    </Card.Text>
+                    <ProgressBar now={72} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      One Page
+                    </Card.Text>
+                    <ProgressBar now={89} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Mobile Template
+                    </Card.Text>
+                    <ProgressBar now={55} />
+                    <Card.Text
+                      className="mt-4 mb-1"
+                      style={{ fontSize: ".77rem" }}
+                    >
+                      Backend API
+                    </Card.Text>
+                    <ProgressBar now={66} />
+                  </Card.Body>
+                </Card>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
-    </div>
+    </section>
   );
-}
+};
+
+export default userProfile;

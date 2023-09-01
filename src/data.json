@@ -40,7 +40,8 @@
           "background": "Solider",
           "skills": "Athletics, Intimidation, Perception",
           "languages": "Draconic, Common",
-          "alignment": "Chaotic Good"
+          "alignment": "Chaotic Good",
+          "inUse": true
         }
       }
     ],

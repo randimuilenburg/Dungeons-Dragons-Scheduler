@@ -25,6 +25,4 @@ const useFetch = (url) => {
   return console.log(data), { data, loading, error };
 };
 
-// next: fetch and display data
-
 export default useFetch;
