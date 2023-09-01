@@ -101,24 +101,26 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
               <Card className="mb-4 mb-lg-0">
                 <Card.Body className="p-0">
                   <ListGroup flush className="rounded-3">
-                    {Object.keys(userData.playerAvailability).map((day) => (
-                      <ListGroup.Item
-                        key={day}
-                        className="d-flex justify-content-between align-items-center p-3"
-                      >
-                        <i
-                          className={`fab ${
-                            userData.playerAvailability[day]
-                              ? "fa-check text-primary"
-                              : "fa-times text-danger"
-                          } fa-lg`}
-                        ></i>
-                        <span>
-                          {day.charAt(0).toUpperCase() +
-                            day.slice(1).toLowerCase()}
-                        </span>
-                      </ListGroup.Item>
-                    ))}
+                    {Object.entries(userData.playerAvailability)
+                      .filter(([day, times]) => times.length > 0)
+                      .map(([day, times]) => (
+                        <ListGroup.Item
+                          key={day}
+                          className="d-flex justify-content-between align-items-center p-3"
+                        >
+                          <i
+                            className={`fab ${
+                              userData.playerAvailability[day]
+                                ? "fa-check text-primary"
+                                : "fa-times text-danger"
+                            } fa-lg`}
+                          ></i>
+                          <span>
+                            {day.charAt(0).toUpperCase() +
+                              day.slice(1).toLowerCase()}
+                          </span>
+                        </ListGroup.Item>
+                      ))}
                   </ListGroup>
                 </Card.Body>
               </Card>
@@ -277,39 +279,5 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
   ) : (
     <p>Looking for user data...</p>
   );
-
-  // JSX
-
-  // <div>
-  //   {userData ? (
-  //     <div>
-  //       {/* <MyNameStuff personalInfo={userData.personalInfo} /> */}
-  //       <p>Player name: {userData.personalInfo.name}</p>
-  //       {userData.characters.map((character) => (
-  //         <div key={character.id}>
-  //           <p>Character name: {character.name}</p>
-  //           <p>Character nickname: {character.nickname}</p>
-  //           <p>Character race: {character.information.race}</p>
-  //           <p>Character class: {character.information.class}</p>
-  //         </div>
-  //       ))}
-  //       <p>Contact:</p>
-  //       <p>Email: {userData.personalInfo.contact.email}</p>
-  //       <p>Phone: {userData.personalInfo.contact.phone}</p>
-  //     </div>
-  //   ) : (
-  //     <p>Looking for user data...</p>
-  //   )}
-  // </div>
-
-  // const MyNameStuff = (props) => {
-  //   return (
-  //     <div>
-  //       <h1>name: {props.personalInfo.name}</h1>
-  //     </div>
-  //   );
-  // };
-
-  // export default userProfile;
 };
 export default UserPage;
