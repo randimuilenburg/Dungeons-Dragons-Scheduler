@@ -54,16 +54,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
       <section style={{ backgroundColor: "#eee" }}>
         <Container className="py-5">
           <Row>
-            <Col>
-              <Breadcrumb className="bg-light rounded-3 p-3 mb-4">
-                <Breadcrumb.Item href="#">Home</Breadcrumb.Item>
-                <Breadcrumb.Item href="#">User</Breadcrumb.Item>
-                <Breadcrumb.Item active>User Profile</Breadcrumb.Item>
-              </Breadcrumb>
-            </Col>
-          </Row>
-
-          <Row>
             <Col lg="4">
               <Card className="mb-4">
                 <Card.Body className="text-center">
@@ -74,22 +64,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     style={{ width: "150px" }}
                     fluid
                   />
-                  <p className="text-muted mb-1">
-                    Years of experience:{" "}
-                    {userData.playerExperience.yearsPlaying}
-                  </p>
-                  <p className="text-muted mb-1">
-                    Campaigns played:{" "}
-                    {userData.playerExperience.numberOfCampaignsPlayed}{" "}
-                  </p>
-                  <p className="text-muted mb-1">
-                    Campaigns completed:{" "}
-                    {userData.playerExperience.numberOfCampaignsPlayed}{" "}
-                  </p>
-                  <p className="text-muted mb-1">
-                    Campaigns in progress:
-                    {userData.playerExperience.numberOfCurrentCampaigns}{" "}
-                  </p>
                   <div className="d-flex justify-content-center mb-2">
                     <Button>Follow</Button>
                     <Button variant="outline-primary" className="ms-1">
@@ -130,7 +104,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                 <Card.Body>
                   <Row>
                     <Col sm="3">
-                      <Card.Text>Full Name</Card.Text>
+                      <Card.Text>Player Name</Card.Text>
                     </Col>
                     <Col sm="9">
                       <Card.Text className="text-muted">
@@ -161,7 +135,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     </Col>
                   </Row>
                   <hr />
-                  <Row>
+                  {/* <Row>
                     <Col sm="3">
                       <Card.Text>Characters</Card.Text>
                     </Col>
@@ -171,106 +145,61 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                       </Card.Text>
                     </Col>
                   </Row>
+                  <hr /> */}
+                  <Row>
+                    <Col sm="3">
+                      <Card.Text>Years of Experience:</Card.Text>
+                    </Col>
+                    <Col sm="9">
+                      <Card.Text className="text-muted">
+                        {userData.playerExperience.yearsPlaying}
+                      </Card.Text>
+                    </Col>
+                  </Row>
+                  <hr />
+                  <Row>
+                    <Col sm="3">
+                      <Card.Text>Campaigns Completed:</Card.Text>
+                    </Col>
+                    <Col sm="9">
+                      <Card.Text className="text-muted">
+                        {userData.playerExperience.numberOfCampaignsPlayed}
+                      </Card.Text>
+                    </Col>
+                  </Row>
+                  <hr />
+                  <Row>
+                    <Col sm="3">
+                      <Card.Text>Campaigns in Progress:</Card.Text>
+                    </Col>
+                    <Col sm="9">
+                      <Card.Text className="text-muted">
+                        {userData.playerExperience.numberOfCurrentCampaigns}
+                      </Card.Text>
+                    </Col>
+                  </Row>
                 </Card.Body>
               </Card>
-
-              <Row>
-                <Col md="6">
-                  <Card className="mb-4 mb-md-0">
-                    <Card.Body>
-                      <Card.Text className="mb-4">
-                        <span className="text-primary font-italic me-1">
-                          assignment
-                        </span>{" "}
-                        Project Status
-                      </Card.Text>
-                      <Card.Text
-                        className="mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Web Design
-                      </Card.Text>
-                      <ProgressBar now={80} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Website Markup
-                      </Card.Text>
-                      <ProgressBar now={72} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        One Page
-                      </Card.Text>
-                      <ProgressBar now={89} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Mobile Template
-                      </Card.Text>
-                      <ProgressBar now={55} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Backend API
-                      </Card.Text>
-                      <ProgressBar now={66} />
-                    </Card.Body>
-                  </Card>
-                </Col>
-
-                <Col md="6">
-                  <Card className="mb-4 mb-md-0">
-                    <Card.Body>
-                      <Card.Text className="mb-4">
-                        <span className="text-primary font-italic me-1">
-                          assignment
-                        </span>{" "}
-                        Project Status
-                      </Card.Text>
-                      <Card.Text
-                        className="mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Web Design
-                      </Card.Text>
-                      <ProgressBar now={80} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Website Markup
-                      </Card.Text>
-                      <ProgressBar now={72} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        One Page
-                      </Card.Text>
-                      <ProgressBar now={89} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Mobile Template
-                      </Card.Text>
-                      <ProgressBar now={55} />
-                      <Card.Text
-                        className="mt-4 mb-1"
-                        style={{ fontSize: ".77rem" }}
-                      >
-                        Backend API
-                      </Card.Text>
-                      <ProgressBar now={66} />
-                    </Card.Body>
-                  </Card>
-                </Col>
-              </Row>
+              <Card className="mb-4">
+                <Card.Body>
+                  <Row>
+                    <Col sm="8">
+                      <Row>
+                        <Col>
+                          <Card.Text>Characters</Card.Text>
+                        </Col>
+                        <Col>
+                          <Card.Text className="text-muted">
+                            {userData.characters.map(
+                              (character) => character.name
+                            )}
+                          </Card.Text>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>
