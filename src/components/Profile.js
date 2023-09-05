@@ -32,17 +32,13 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
       try {
         const fetchUrl = `${url}${lastPartCurrentUser}`;
         const response = await fetch(fetchUrl);
-        console.log(fetchUrl);
         if (!response.ok) {
           throw new Error("Network response worked!");
         }
-        console.log(response);
         const data = await response.json();
         // {check for response code 404, display error msg accordingly}
         setUserData(data);
-      } catch (error) {
-        console.log("Error fetching data", error);
-      }
+      } catch (error) {}
     };
 
     fetchUserData();
@@ -65,14 +61,15 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     fluid
                   />
                   <div className="d-flex justify-content-center mb-2">
-                    <Button>Follow</Button>
+                    <Button>Friend</Button>
                     <Button variant="outline-primary" className="ms-1">
                       Message
                     </Button>
                   </div>
                 </Card.Body>
               </Card>
-              <Card className="mb-4 mb-lg-0">
+              {/* [AVAILABILITY] */}
+              {/* <Card className="mb-4 mb-lg-0">
                 <Card.Body className="p-0">
                   <ListGroup flush className="rounded-3">
                     {Object.entries(userData.playerAvailability)
@@ -82,13 +79,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                           key={day}
                           className="d-flex justify-content-between align-items-center p-3"
                         >
-                          <i
-                            className={`fab ${
-                              userData.playerAvailability[day]
-                                ? "fa-check text-primary"
-                                : "fa-times text-danger"
-                            } fa-lg`}
-                          ></i>
                           <span>
                             {day.charAt(0).toUpperCase() +
                               day.slice(1).toLowerCase()}
@@ -97,7 +87,30 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                       ))}
                   </ListGroup>
                 </Card.Body>
+              </Card> */}
+              <Card className="mb-4 mb-lg-0">
+                <Card.Body className="p-0">
+                  <ListGroup flush className="rounded-3">
+                    {Object.entries(userData.playerAvailability).map(
+                      ([day, times]) => (
+                        <ListGroup.Item
+                          key={day}
+                          className={`d-flex justify-content-between align-items-center p-3 ${
+                            times.length > 0 ? "bg-primary text-white" : ""
+                          }`}
+                        >
+                          <span>
+                            {day.charAt(0).toUpperCase() +
+                              day.slice(1).toLowerCase()}
+                          </span>
+                        </ListGroup.Item>
+                      )
+                    )}
+                  </ListGroup>
+                </Card.Body>
               </Card>
+              {/* ); */}
+              {/* } */}
             </Col>
             <Col lg="8">
               <Card className="mb-4">
@@ -135,17 +148,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     </Col>
                   </Row>
                   <hr />
-                  {/* <Row>
-                    <Col sm="3">
-                      <Card.Text>Characters</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.characters.map((character) => character.name)}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr /> */}
                   <Row>
                     <Col sm="3">
                       <Card.Text>Years of Experience:</Card.Text>
