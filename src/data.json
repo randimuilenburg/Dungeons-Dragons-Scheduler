@@ -14,7 +14,7 @@
       "wednesday": [],
       "thursday": ["evening"],
       "friday": ["evening", "night"],
-      "saturday": ["afternoon", "evening", "night"],
+      "saturday": ["afternoon", "evening"],
       "sunday": ["afternoon", "evening"]
     },
     "playerExperience": {

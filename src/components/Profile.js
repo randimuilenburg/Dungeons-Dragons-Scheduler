@@ -68,49 +68,55 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   </div>
                 </Card.Body>
               </Card>
-              {/* [AVAILABILITY] */}
-              {/* <Card className="mb-4 mb-lg-0">
-                <Card.Body className="p-0">
-                  <ListGroup flush className="rounded-3">
-                    {Object.entries(userData.playerAvailability)
-                      .filter(([day, times]) => times.length > 0)
-                      .map(([day, times]) => (
-                        <ListGroup.Item
-                          key={day}
-                          className="d-flex justify-content-between align-items-center p-3"
-                        >
-                          <span>
-                            {day.charAt(0).toUpperCase() +
-                              day.slice(1).toLowerCase()}
-                          </span>
-                        </ListGroup.Item>
-                      ))}
-                  </ListGroup>
-                </Card.Body>
-              </Card> */}
               <Card className="mb-4 mb-lg-0">
+                <div style={{ textAlign: "center" }}>
+                  <h5>Availability:</h5>
+                </div>
                 <Card.Body className="p-0">
-                  <ListGroup flush className="rounded-3">
+                  <div className="availability-card">
                     {Object.entries(userData.playerAvailability).map(
                       ([day, times]) => (
-                        <ListGroup.Item
-                          key={day}
-                          className={`d-flex justify-content-between align-items-center p-3 ${
-                            times.length > 0 ? "bg-primary text-white" : ""
-                          }`}
-                        >
-                          <span>
-                            {day.charAt(0).toUpperCase() +
-                              day.slice(1).toLowerCase()}
-                          </span>
-                        </ListGroup.Item>
+                        <div key={day} className="availability-day">
+                          <div
+                            className={`day-circle ${
+                              times.length > 0
+                                ? "bg-success text-black"
+                                : "bg-white text-black"
+                            }`}
+                          >
+                            {day.charAt(0).toUpperCase()}
+                            {day.charAt(1).toLowerCase()}
+                            {day.charAt(2).toLowerCase()}
+                          </div>
+                          <div className="availability-times">
+                            <div
+                              className={`availability-time ${
+                                times.includes("morning") ? "available" : ""
+                              }`}
+                            >
+                              <span>Morning</span>
+                            </div>
+                            <div
+                              className={`availability-time ${
+                                times.includes("afternoon") ? "available" : ""
+                              }`}
+                            >
+                              <span>Afternoon</span>
+                            </div>
+                            <div
+                              className={`availability-time ${
+                                times.includes("evening") ? "available" : ""
+                              }`}
+                            >
+                              <span>Evening</span>
+                            </div>
+                          </div>
+                        </div>
                       )
                     )}
-                  </ListGroup>
+                  </div>
                 </Card.Body>
               </Card>
-              {/* ); */}
-              {/* } */}
             </Col>
             <Col lg="8">
               <Card className="mb-4">

@@ -19,7 +19,7 @@
 //       "wednesday": ["evening"],
 //       "thursday": ["evening"],
 //       "friday": ["evening"],
-//       "saturday": ["afternoon", "evening", "night"],
+//       "saturday": ["afternoon", "evening"],
 //       "sunday": ["afternoon", "evening"]
 //     },
 //     "playerExperience": {
@@ -63,10 +63,10 @@
 //       "monday": ["evening"],
 //       "tuesday": ["evening"],
 //       "wednesday": ["evening"],
-//       "thursday": ["evening", "night"],
+//       "thursday": ["evening"],
 //       "friday": [],
-//       "saturday": ["afternoon", "evening", "night"],
-//       "sunday": ["afternoon", "evening", "night"]
+//       "saturday": ["afternoon", "evening"],
+//       "sunday": ["afternoon", "evening"]
 //     },
 //     "playerExperience": {
 //       "yearsPlaying": "1",
@@ -110,8 +110,8 @@
 //       "tuesday": ["morning", "evening"],
 //       "wednesday": [],
 //       "thursday": [],
-//       "friday": ["morning", "evening", "night"],
-//       "saturday": ["morning", "afternoon", "evening", "night"],
+//       "friday": ["morning", "evening"],
+//       "saturday": ["morning", "afternoon", "evening"],
 //       "sunday": []
 //     },
 //     "playerExperience": {
@@ -159,8 +159,8 @@
 //       "tuesday": ["evening"],
 //       "wednesday": ["evening"],
 //       "thursday": ["evening"],
-//       "friday": ["evening", "night"],
-//       "saturday": ["morning", "afternoon", "evening", "night"],
+//       "friday": ["evening"],
+//       "saturday": ["morning", "afternoon", "evening"],
 //       "sunday": ["morning", "afternoon", "evening"]
 //     },
 //     "playerExperience": {
