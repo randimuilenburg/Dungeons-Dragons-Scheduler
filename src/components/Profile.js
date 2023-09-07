@@ -1,15 +1,69 @@
-import React, { useState, useEffect, useSyncExternalStore } from "react";
+import { render } from "@testing-library/react";
 import useFetch from "./DataFetching";
-import {
-  Container,
-  Row,
-  Col,
-  Breadcrumb,
-  Card,
-  Button,
-  ProgressBar,
-  ListGroup,
-} from "react-bootstrap";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
+import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+
+const dayAvailability = {
+  monday: false,
+  tuesday: false,
+  wednesday: false,
+  thursday: false,
+  friday: false,
+  saturday: false,
+  sunday: false,
+};
+
+const AvailabilityComponent = (props) => {
+  // 1. construct day:bool object
+  const availabilityMapping = {
+    morning: { ...dayAvailability },
+    afternoon: { ...dayAvailability },
+    evening: { ...dayAvailability },
+  };
+
+  console.log(availabilityMapping);
+  // {
+  //   "monday": [],
+  //   "tuesday": ["evening"],
+  //   "wednesday": [],
+  //   "thursday": ["evening"],
+  //   "friday": ["evening"],
+  //   "saturday": ["afternoon", "evening"],
+  //   "sunday": ["afternoon", "evening"]
+  // }
+  // 2. For every entry in availavility, each value updates
+  // tuesday: ["evening"]
+  // use Object.entries => tuple key, value
+  // key, value = Object.entries(availability)
+  // let key = tuesday;
+  // let value = ["evening"];
+
+  // let a = Object.entries(props.availability);
+  // console.log(a);
+
+  for (let [day, times] of Object.entries(props.availability)) {
+    console.log(times);
+    for (let timeslot of times) {
+      availabilityMapping[timeslot][day] = true;
+      console.log(availabilityMapping);
+    }
+    // return availabilityMapping.morning;
+
+    return (
+      <div>
+        <h1>
+          {Object.entries(availabilityMapping.morning).map(
+            ([day, isAvailable]) => (
+              <p key={day}>
+                {day}: {isAvailable ? "True" : "False"}
+              </p>
+            )
+          )}
+        </h1>
+      </div>
+    );
+  }
+};
 
 const UserPage = () => {
   const currentUrl = window.location.href;
@@ -89,6 +143,9 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                             {day.charAt(2).toLowerCase()}
                           </div>
                           <div className="availability-times">
+                            <AvailabilityComponent
+                              availability={userData.playerAvailability}
+                            />
                             <div
                               className={`availability-time ${
                                 times.includes("morning") ? "available" : ""

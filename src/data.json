@@ -13,7 +13,7 @@
       "tuesday": ["evening"],
       "wednesday": [],
       "thursday": ["evening"],
-      "friday": ["evening", "night"],
+      "friday": ["evening"],
       "saturday": ["afternoon", "evening"],
       "sunday": ["afternoon", "evening"]
     },
