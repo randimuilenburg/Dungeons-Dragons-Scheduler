@@ -14,44 +14,23 @@ const dayAvailability = {
 };
 
 const AvailabilityComponent = (props) => {
-  // 1. construct day:bool object
   const availabilityMapping = {
     morning: { ...dayAvailability },
     afternoon: { ...dayAvailability },
     evening: { ...dayAvailability },
   };
 
-  console.log(availabilityMapping);
-  // {
-  //   "monday": [],
-  //   "tuesday": ["evening"],
-  //   "wednesday": [],
-  //   "thursday": ["evening"],
-  //   "friday": ["evening"],
-  //   "saturday": ["afternoon", "evening"],
-  //   "sunday": ["afternoon", "evening"]
-  // }
-  // 2. For every entry in availavility, each value updates
-  // tuesday: ["evening"]
-  // use Object.entries => tuple key, value
-  // key, value = Object.entries(availability)
-  // let key = tuesday;
-  // let value = ["evening"];
+  console.log(props);
+  // for (let [day, times] of Object.entries(props.availability)) {
+  //   console.log(times);
+  //   for (let timeslot of times) {
+  //     availabilityMapping[timeslot][day] = true;
+  //     console.log(availabilityMapping);
+  //   }
 
-  // let a = Object.entries(props.availability);
-  // console.log(a);
-
-  for (let [day, times] of Object.entries(props.availability)) {
-    console.log(times);
-    for (let timeslot of times) {
-      availabilityMapping[timeslot][day] = true;
-      console.log(availabilityMapping);
-    }
-    // return availabilityMapping.morning;
-
-    return (
-      <div>
-        <h1>
+  return (
+    <div>
+      {/* <h1>
           {Object.entries(availabilityMapping.morning).map(
             ([day, isAvailable]) => (
               <p key={day}>
@@ -59,10 +38,9 @@ const AvailabilityComponent = (props) => {
               </p>
             )
           )}
-        </h1>
-      </div>
-    );
-  }
+        </h1> */}
+    </div>
+  );
 };
 
 const UserPage = () => {
@@ -74,6 +52,28 @@ const UserPage = () => {
     <div>
       <FetchForProfile lastPartCurrentUser={lastPartCurrentUser} />
     </div>
+  );
+};
+
+const ProfilePicComponent = () => {
+  return (
+    <Card className="mb-4">
+      <Card.Body className="text-center">
+        <Card.Img
+          src={require("../Images/Randiplayerimg.jpg")}
+          alt="avatar"
+          className="rounded-circle"
+          style={{ width: "150px" }}
+          fluid
+        />
+        <div className="d-flex justify-content-center mb-2">
+          <Button>Friend</Button>
+          <Button variant="outline-primary" className="ms-1">
+            Message
+          </Button>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
@@ -98,6 +98,11 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
     fetchUserData();
   }, [lastPartCurrentUser]);
 
+  // Capitalizing the first letters of the days
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   console.log(userData);
   return userData ? (
     <div>
@@ -105,28 +110,13 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
         <Container className="py-5">
           <Row>
             <Col lg="4">
-              <Card className="mb-4">
-                <Card.Body className="text-center">
-                  <Card.Img
-                    src={require("../Images/Randiplayerimg.jpg")}
-                    alt="avatar"
-                    className="rounded-circle"
-                    style={{ width: "150px" }}
-                    fluid
-                  />
-                  <div className="d-flex justify-content-center mb-2">
-                    <Button>Friend</Button>
-                    <Button variant="outline-primary" className="ms-1">
-                      Message
-                    </Button>
-                  </div>
-                </Card.Body>
-              </Card>
+              <ProfilePicComponent />
               <Card className="mb-4 mb-lg-0">
                 <div style={{ textAlign: "center" }}>
-                  <h5>Availability:</h5>
+                  <h4>Availability:</h4>
                 </div>
-                <Card.Body className="p-0">
+                {/* THIS IS THE OLD DESIGN */}
+                {/* <Card.Body className="p-0">
                   <div className="availability-card">
                     {Object.entries(userData.playerAvailability).map(
                       ([day, times]) => (
@@ -172,7 +162,26 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                       )
                     )}
                   </div>
-                </Card.Body>
+                </Card.Body> */}
+                {/* OLD DESIGN ENDS HERE */}
+                <div>
+                  <div style={{ display: "flex" }}>
+                    <div style={{ flex: 1 }}>
+                      <h5>Morning</h5>
+                      <h5>Afternoon</h5>
+                      <h5>Evening</h5>
+                    </div>
+                    <AvailabilityComponent
+                      availability={userData.playerAvailability}
+                    />
+                  </div>
+                </div>
+                {/* ); */}
+                {/* }; */}
+                {/* ); */}
+
+                {/* ); */}
+                {/* } */}
               </Card>
             </Col>
             <Col lg="8">
