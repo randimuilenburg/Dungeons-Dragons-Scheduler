@@ -20,9 +20,7 @@ const AvailabilityComponent = (props) => {
     evening: { ...dayAvailability },
   };
 
-  console.log(props);
   // for (let [day, times] of Object.entries(props.availability)) {
-  //   console.log(times);
   //   for (let timeslot of times) {
   //     availabilityMapping[timeslot][day] = true;
   //     console.log(availabilityMapping);
@@ -55,6 +53,7 @@ const UserPage = () => {
   );
 };
 
+// Profile pic, friend and message buttons
 const ProfilePicComponent = () => {
   return (
     <Card className="mb-4">
@@ -115,55 +114,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                 <div style={{ textAlign: "center" }}>
                   <h4>Availability:</h4>
                 </div>
-                {/* THIS IS THE OLD DESIGN */}
-                {/* <Card.Body className="p-0">
-                  <div className="availability-card">
-                    {Object.entries(userData.playerAvailability).map(
-                      ([day, times]) => (
-                        <div key={day} className="availability-day">
-                          <div
-                            className={`day-circle ${
-                              times.length > 0
-                                ? "bg-success text-black"
-                                : "bg-white text-black"
-                            }`}
-                          >
-                            {day.charAt(0).toUpperCase()}
-                            {day.charAt(1).toLowerCase()}
-                            {day.charAt(2).toLowerCase()}
-                          </div>
-                          <div className="availability-times">
-                            <AvailabilityComponent
-                              availability={userData.playerAvailability}
-                            />
-                            <div
-                              className={`availability-time ${
-                                times.includes("morning") ? "available" : ""
-                              }`}
-                            >
-                              <span>Morning</span>
-                            </div>
-                            <div
-                              className={`availability-time ${
-                                times.includes("afternoon") ? "available" : ""
-                              }`}
-                            >
-                              <span>Afternoon</span>
-                            </div>
-                            <div
-                              className={`availability-time ${
-                                times.includes("evening") ? "available" : ""
-                              }`}
-                            >
-                              <span>Evening</span>
-                            </div>
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                </Card.Body> */}
-                {/* OLD DESIGN ENDS HERE */}
                 <div>
                   <div style={{ display: "flex" }}>
                     <div style={{ flex: 1 }}>
@@ -176,12 +126,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     />
                   </div>
                 </div>
-                {/* ); */}
-                {/* }; */}
-                {/* ); */}
-
-                {/* ); */}
-                {/* } */}
               </Card>
             </Col>
             <Col lg="8">
