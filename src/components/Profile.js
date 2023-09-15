@@ -53,7 +53,7 @@ const UserPage = () => {
   );
 };
 
-// Profile pic, friend and message buttons
+// Profile Pic, Friend and Message Buttons:
 const ProfilePicComponent = () => {
   return (
     <Card className="mb-4">
@@ -74,6 +74,99 @@ const ProfilePicComponent = () => {
       </Card.Body>
     </Card>
   );
+};
+
+// Player Info Component:
+const PlayerNameComponent = (props) => {
+  return (
+    <Card className="mb-4">
+      <Card.Body>
+        <Row>
+          <Col sm="3">
+            <Card.Text>Player Name:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">{props.name}</Card.Text>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm="3">
+            <Card.Text>Email:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">{props.email}</Card.Text>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm="3">
+            <Card.Text>Phone:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">{props.phone}</Card.Text>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm="3">
+            <Card.Text>Years of Experience:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">{props.yearsPlaying}</Card.Text>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm="3">
+            <Card.Text>Campaigns Played:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">
+              {props.campaignsPlayed}
+            </Card.Text>
+          </Col>
+        </Row>
+        <hr />
+        <Row>
+          <Col sm="3">
+            <Card.Text>Campaigns in Progress:</Card.Text>
+          </Col>
+          <Col sm="9">
+            <Card.Text className="text-muted">
+              {props.currentCampaigns}
+            </Card.Text>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  );
+};
+
+// Availability Component:
+const PlayerAvailabilityComponent = (props) => {
+  return (
+    <Card className="mb-4 mb-lg-0">
+      <div style={{ textAlign: "center" }}>
+        <h4>Availability:</h4>
+      </div>
+      <div>
+        <div style={{ display: "flex" }}>
+          <div style={{ flex: 1 }}>
+            <h5>Morning</h5>
+            <h5>Afternoon</h5>
+            <h5>Evening</h5>
+          </div>
+          <AvailabilityComponent availability={props.availability} />
+        </div>
+      </div>
+    </Card>
+  );
+};
+
+// Character Names Component:
+const CharacterNamesComponent = (props) => {
+  return <Card.Text className="text-muted">{props.characterNames}</Card.Text>;
 };
 
 const FetchForProfile = ({ lastPartCurrentUser }) => {
@@ -98,9 +191,9 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
   }, [lastPartCurrentUser]);
 
   // Capitalizing the first letters of the days
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  // function capitalizeFirstLetter(string) {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // }
 
   console.log(userData);
   return userData ? (
@@ -110,92 +203,25 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
           <Row>
             <Col lg="4">
               <ProfilePicComponent />
-              <Card className="mb-4 mb-lg-0">
-                <div style={{ textAlign: "center" }}>
-                  <h4>Availability:</h4>
-                </div>
-                <div>
-                  <div style={{ display: "flex" }}>
-                    <div style={{ flex: 1 }}>
-                      <h5>Morning</h5>
-                      <h5>Afternoon</h5>
-                      <h5>Evening</h5>
-                    </div>
-                    <AvailabilityComponent
-                      availability={userData.playerAvailability}
-                    />
-                  </div>
-                </div>
-              </Card>
+              <PlayerAvailabilityComponent
+                availability={userData.playerAvailability}
+              />
             </Col>
             <Col lg="8">
               <Card className="mb-4">
                 <Card.Body>
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Player Name</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.personalInfo.name}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Email</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.personalInfo.contact.email}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Phone</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.personalInfo.contact.phone}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Years of Experience:</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.playerExperience.yearsPlaying}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Campaigns Completed:</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.playerExperience.numberOfCampaignsPlayed}
-                      </Card.Text>
-                    </Col>
-                  </Row>
-                  <hr />
-                  <Row>
-                    <Col sm="3">
-                      <Card.Text>Campaigns in Progress:</Card.Text>
-                    </Col>
-                    <Col sm="9">
-                      <Card.Text className="text-muted">
-                        {userData.playerExperience.numberOfCurrentCampaigns}
-                      </Card.Text>
-                    </Col>
-                  </Row>
+                  <PlayerNameComponent
+                    name={userData.personalInfo.name}
+                    email={userData.personalInfo.contact.email}
+                    phone={userData.personalInfo.contact.phone}
+                    yearsPlaying={userData.playerExperience.yearsPlaying}
+                    campaignsPlayed={
+                      userData.playerExperience.numberOfCampaignsPlayed
+                    }
+                    currentCampaigns={
+                      userData.playerExperience.numberOfCurrentCampaigns
+                    }
+                  />
                 </Card.Body>
               </Card>
               <Card className="mb-4">
@@ -204,13 +230,15 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     <Col sm="8">
                       <Row>
                         <Col>
-                          <Card.Text>Characters</Card.Text>
+                          <Card.Text>Characters:</Card.Text>
                         </Col>
                         <Col>
                           <Card.Text className="text-muted">
-                            {userData.characters.map(
-                              (character) => character.name
-                            )}
+                            <CharacterNamesComponent
+                              characterNames={userData.characters.map(
+                                (character) => character.name
+                              )}
+                            />
                           </Card.Text>
                         </Col>
                       </Row>
