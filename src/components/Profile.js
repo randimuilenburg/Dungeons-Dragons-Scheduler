@@ -76,68 +76,45 @@ const ProfilePicComponent = () => {
   );
 };
 
+// Row Styling Component for Info Card:
+const PlayerInfoRowComponent = (props) => {
+  return (
+    <Row>
+      <Col sm="3">
+        <Card.Text>{props.title}:</Card.Text>
+      </Col>
+      <Col sm="9">
+        <Card.Text className="text-muted">{props.value}</Card.Text>
+      </Col>
+    </Row>
+  );
+};
+
 // Player Info Component:
-const PlayerNameComponent = (props) => {
+const PlayerInfoComponent = (props) => {
   return (
     <Card className="mb-4">
       <Card.Body>
-        <Row>
-          <Col sm="3">
-            <Card.Text>Player Name:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">{props.name}</Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent title="Player Name" value={props.name} />
         <hr />
-        <Row>
-          <Col sm="3">
-            <Card.Text>Email:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">{props.email}</Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent title="Email" value={props.email} />
         <hr />
-        <Row>
-          <Col sm="3">
-            <Card.Text>Phone:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">{props.phone}</Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent title="Phone" value={props.phone} />
         <hr />
-        <Row>
-          <Col sm="3">
-            <Card.Text>Years of Experience:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">{props.yearsPlaying}</Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent
+          title="Years of Experience"
+          value={props.yearsPlaying}
+        />
         <hr />
-        <Row>
-          <Col sm="3">
-            <Card.Text>Campaigns Played:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">
-              {props.campaignsPlayed}
-            </Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent
+          title="Campaigns Played"
+          value={props.campaignsPlayed}
+        />
         <hr />
-        <Row>
-          <Col sm="3">
-            <Card.Text>Campaigns in Progress:</Card.Text>
-          </Col>
-          <Col sm="9">
-            <Card.Text className="text-muted">
-              {props.currentCampaigns}
-            </Card.Text>
-          </Col>
-        </Row>
+        <PlayerInfoRowComponent
+          title="Current Campaigns"
+          value={props.currentCampaigns}
+        />
       </Card.Body>
     </Card>
   );
@@ -210,7 +187,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
             <Col lg="8">
               <Card className="mb-4">
                 <Card.Body>
-                  <PlayerNameComponent
+                  <PlayerInfoComponent
                     name={userData.personalInfo.name}
                     email={userData.personalInfo.contact.email}
                     phone={userData.personalInfo.contact.phone}
