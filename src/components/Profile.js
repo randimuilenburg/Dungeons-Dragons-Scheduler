@@ -121,7 +121,43 @@ const PlayerInfoComponent = (props) => {
 };
 
 // Availability Component:
+// const PlayerAvailabilityComponent = (props) => {
+//   return (
+//     <Card className="mb-4 mb-lg-0">
+//       <div style={{ textAlign: "center" }}>
+//         <h4>Availability:</h4>
+//       </div>
+//       <div>
+//         <div style={{ display: "flex" }}>
+//           <div style={{ flex: 1 }}>
+//             <h5>Morning</h5>
+//             <h5>Afternoon</h5>
+//             <h5>Evening</h5>
+//           </div>
+//           <AvailabilityComponent availability={props.availability} />
+//         </div>
+//       </div>
+//     </Card>
+//   );
+// };
+
 const PlayerAvailabilityComponent = (props) => {
+  // Define an array of days of the week
+  const daysOfWeek = ["M", "T", "W", "Th", "F", "Sa", "Su"];
+
+  // Helper function to render circles
+  const renderCircles = () => {
+    return (
+      <div className="circle-row">
+        {daysOfWeek.map((day, index) => (
+          <div key={index} className="circle">
+            {day}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <Card className="mb-4 mb-lg-0">
       <div style={{ textAlign: "center" }}>
@@ -131,10 +167,23 @@ const PlayerAvailabilityComponent = (props) => {
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
             <h5>Morning</h5>
+          </div>
+          <AvailabilityComponent availability={props.availability} />
+          {renderCircles()}
+        </div>
+        <div style={{ display: "flex" }}>
+          <div style={{ flex: 1 }}>
             <h5>Afternoon</h5>
+          </div>
+          <AvailabilityComponent availability={props.availability} />
+          {renderCircles()}
+        </div>
+        <div style={{ display: "flex" }}>
+          <div style={{ flex: 1 }}>
             <h5>Evening</h5>
           </div>
           <AvailabilityComponent availability={props.availability} />
+          {renderCircles()}
         </div>
       </div>
     </Card>
@@ -168,9 +217,9 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
   }, [lastPartCurrentUser]);
 
   // Capitalizing the first letters of the days
-  // function capitalizeFirstLetter(string) {
-  //   return string.charAt(0).toUpperCase() + string.slice(1);
-  // }
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   console.log(userData);
   return userData ? (

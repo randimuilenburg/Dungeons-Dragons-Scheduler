@@ -54,17 +54,17 @@
 
 /* Availability chart: */
 /* Style the card */
-.availability-card {
+/* .availability-card {
   display: flex;
   flex-wrap: wrap;
-}
+} */
 
 /* Style each day */
-.availability-day {
+/* .availability-day {
   display: flex;
   align-items: center;
   margin: 10px;
-}
+} */
 
 /* Style the abbreviated day circle */
 .day-circle {
@@ -77,25 +77,23 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-}
+} 
 
-/* Style the availability times container */
-.availability-times {
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
-}
 
-/* Style each availability time slot */
-.availability-time {
-  margin: 5px 0;
+.circle-row {
   display: flex;
   align-items: center;
 }
 
-/* Style the green checkmark for available time slots */
-.availability-time.available::before {
-  content: '\2713'; /* Unicode checkmark character */
-  color: #4CAF50; /* Green color */
+.circle {
+  width: 25px;
+  height: 25px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
   margin-right: 5px;
 }
