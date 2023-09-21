@@ -52,34 +52,7 @@
   padding-bottom: 100px;
 }
 
-/* Availability chart: */
-/* Style the card */
-/* .availability-card {
-  display: flex;
-  flex-wrap: wrap;
-} */
-
-/* Style each day */
-/* .availability-day {
-  display: flex;
-  align-items: center;
-  margin: 10px;
-} */
-
-/* Style the abbreviated day circle */
-.day-circle {
-  width: 40px;
-  height: 40px;
-  background-color: #007bff; /* Blue circle color */
-  color: #fff; /* Text color */
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-} 
-
-
+/* Availability Graph on Profile: */
 .circle-row {
   display: flex;
   align-items: center;
@@ -89,7 +62,7 @@
   width: 25px;
   height: 25px;
   background-color: white;
-  border: 2px solid black;
+  border: 0.5px solid black;
   border-radius: 50%;
   display: flex;
   align-items: center;

@@ -121,31 +121,10 @@ const PlayerInfoComponent = (props) => {
 };
 
 // Availability Component:
-// const PlayerAvailabilityComponent = (props) => {
-//   return (
-//     <Card className="mb-4 mb-lg-0">
-//       <div style={{ textAlign: "center" }}>
-//         <h4>Availability:</h4>
-//       </div>
-//       <div>
-//         <div style={{ display: "flex" }}>
-//           <div style={{ flex: 1 }}>
-//             <h5>Morning</h5>
-//             <h5>Afternoon</h5>
-//             <h5>Evening</h5>
-//           </div>
-//           <AvailabilityComponent availability={props.availability} />
-//         </div>
-//       </div>
-//     </Card>
-//   );
-// };
-
 const PlayerAvailabilityComponent = (props) => {
-  // Define an array of days of the week
   const daysOfWeek = ["M", "T", "W", "Th", "F", "Sa", "Su"];
 
-  // Helper function to render circles
+  // Render circles:
   const renderCircles = () => {
     return (
       <div className="circle-row">
