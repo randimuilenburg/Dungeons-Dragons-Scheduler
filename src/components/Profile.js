@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
 import PlayerAvailability from "./PlayerAvailability";
+import CharacterCardForProfile from "./CharacterInfoCard";
+import { Link } from "react-router-dom";
 
 const dayAvailability = {
   monday: false,
@@ -36,7 +38,7 @@ const ProfilePicComponent = () => {
           alt="avatar"
           className="rounded-circle"
           style={{ width: "150px" }}
-          fluid
+          // fluid
         />
         <div className="d-flex justify-content-center mb-2">
           <Button>Friend</Button>
@@ -98,7 +100,22 @@ const PlayerInfoComponent = (props) => {
 
 // Character Names Component:
 const CharacterNamesComponent = (props) => {
-  return <Card.Text className="text-muted">{props.characterNames}</Card.Text>;
+  return (
+    <div>
+      {props.characterNames.map((characterName, index) => {
+        const urlFriendlyCharacterName = characterName.replace(/ /g, "-");
+        return (
+          <Link
+            key={index}
+            to={`/CharacterInfo/${urlFriendlyCharacterName}`}
+            className="text-muted"
+          >
+            {characterName}
+          </Link>
+        );
+      })}
+    </div>
+  );
 };
 
 const FetchForProfile = ({ lastPartCurrentUser }) => {
@@ -158,19 +175,20 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                           <Card.Text>Characters:</Card.Text>
                         </Col>
                         <Col>
-                          <Card.Text className="text-muted">
-                            <CharacterNamesComponent
-                              characterNames={userData.characters.map(
-                                (character) => character.name
-                              )}
-                            />
-                          </Card.Text>
+                          {/* <Card.Text className="text-muted"> */}
+                          <CharacterNamesComponent
+                            characterNames={userData.characters.map(
+                              (character) => character.name
+                            )}
+                          />
+                          {/* </Card.Text> */}
                         </Col>
                       </Row>
                     </Col>
                   </Row>
                 </Card.Body>
               </Card>
+              <CharacterCardForProfile />
             </Col>
           </Row>
         </Container>

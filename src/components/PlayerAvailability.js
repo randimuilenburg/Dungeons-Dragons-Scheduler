@@ -70,7 +70,11 @@ const PlayerAvailabilityTimeslotAndDay = (props) => {
     <div style={{ display: "flex" }}>
       <PlayerAvailabilityTimeslotDisplay timeslot={props.timeslot} />
       {Object.entries(props.days).map(([day, isAvailable]) => (
-        <PlayerAvailabilityDayDisplay day={day} isAvailable={isAvailable} />
+        <PlayerAvailabilityDayDisplay
+          day={day}
+          isAvailable={isAvailable}
+          key={day}
+        />
       ))}
     </div>
   );
@@ -93,12 +97,13 @@ const PlayerAvailability = (props) => {
 
   return (
     <Card className="mb-4 mb-lg-0">
-      <PlayerAvailabilityHeader value="Availabilty" />
+      <PlayerAvailabilityHeader value="Availability" />
       {Object.entries(availabilityMapping).map(
         ([timeslot, dayAvailabilityObject]) => (
           <PlayerAvailabilityTimeslotAndDay
             timeslot={timeslot}
             days={dayAvailabilityObject}
+            key={timeslot}
           />
         )
       )}
