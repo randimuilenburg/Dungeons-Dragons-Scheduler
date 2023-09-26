@@ -36,7 +36,7 @@ const dayAbbrev = {
 
 const PlayerAvailabilityDayDisplay = (props) => {
   const isAvailable = props.isAvailable;
-  let color = isAvailable ? "green" : "red";
+  let color = isAvailable ? "green" : "gray";
   let dayAbbreviation = dayAbbrev[props.day];
   return (
     <div
@@ -77,7 +77,6 @@ const PlayerAvailabilityTimeslotAndDay = (props) => {
 };
 
 const PlayerAvailability = (props) => {
-  //   const playerAvailability = props.playerAvailability;
   const playerAvailability = {
     monday: ["morning"],
     tuesday: ["evening"],
