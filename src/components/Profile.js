@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import useFetch from "./DataFetching";
 import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import PlayerAvailability from "./Availability";
 
 const dayAvailability = {
   monday: false,
@@ -13,33 +14,59 @@ const dayAvailability = {
   sunday: false,
 };
 
-const AvailabilityComponent = (props) => {
-  const availabilityMapping = {
-    morning: { ...dayAvailability },
-    afternoon: { ...dayAvailability },
-    evening: { ...dayAvailability },
-  };
-
-  // for (let [day, times] of Object.entries(props.availability)) {
-  //   for (let timeslot of times) {
-  //     availabilityMapping[timeslot][day] = true;
-  //     console.log(availabilityMapping);
-  //   }
-
+const AvailabilityDayDisplay = (props) => {
   return (
-    <div>
-      {/* <h1>
-          {Object.entries(availabilityMapping.morning).map(
-            ([day, isAvailable]) => (
-              <p key={day}>
-                {day}: {isAvailable ? "True" : "False"}
-              </p>
-            )
-          )}
-        </h1> */}
-    </div>
+    <div key={props.day} className="circle" backgroundColor={"green"}></div>
   );
 };
+// 1. take the template above
+// 2. fill a copy of the template out with your data
+// 3. Render a circle using the data you made
+
+// ORIGINAL:
+// const AvailabilityComponent = (props) => {
+//   const availabilityMapping = {
+//     morning: { ...dayAvailability },
+//     afternoon: { ...dayAvailability },
+//     evening: { ...dayAvailability },
+//   };
+// morning: [true, false, false, false, true, true, true]
+
+//   for (let [day, times] of Object.entries(props.availability)) {
+//     for (let timeslot of times) {
+//       availabilityMapping[timeslot][day] = true;
+//       console.log(availabilityMapping);
+//     }
+
+//     return (
+//       // <div>
+//       //   <h1>
+//       //     {Object.entries(availabilityMapping.morning).map(
+//       //       ([day, isAvailable]) => (
+//       //         <p key={day}>
+//       //           {day}: {isAvailable ? "True" : "False"}
+//       //         </p>
+//       //       )
+//       //     )}
+//       //   </h1>
+//       // </div>
+//       <div className="circlesdfds">
+//         {Object.entries(availabilityMapping.morning).map(
+//           ([day, isAvailable]) => (
+//             // <div
+//             //   key={day}
+//             //   className={`circle ${isAvailable ? greenCircleClass : ""}`}
+//             // ></div>
+//             // <RenameMe day={day} />
+//             <h1>
+//               {day} | {isAvailable}
+//             </h1>
+//           )
+//         )}
+//       </div>
+//     );
+//   }
+// };
 
 const UserPage = () => {
   const currentUrl = window.location.href;
@@ -120,9 +147,45 @@ const PlayerInfoComponent = (props) => {
   );
 };
 
-// Availability Component:
+// Availability Component: THIS CAN ALL GO, rename Availability.js to PlayerAvailability
+// Render days of the week:
 const PlayerAvailabilityComponent = (props) => {
   const daysOfWeek = ["M", "T", "W", "Th", "F", "Sa", "Su"];
+
+  const dayAvailability = {
+    monday: false,
+    tuesday: false,
+    wednesday: false,
+    thursday: false,
+    friday: false,
+    saturday: false,
+    sunday: false,
+  };
+
+  const AvailabilityDayDisplay = (props) => {
+    return (
+      <div
+        key={props.day}
+        className="circle"
+        style={{ backgroundColor: "green" }}
+      ></div>
+    );
+  };
+
+  const availabilityMapping = {
+    morning: { ...dayAvailability },
+    // afternoon: { ...dayAvailability },
+    // evening: { ...dayAvailability },
+  };
+
+  const DayAvailabilityComponent = (props) => {
+    for (let [day, times] of Object.entries(props.availability)) {
+      for (let timeslot of times) {
+        availabilityMapping[timeslot][day] = true;
+        console.log(availabilityMapping);
+      }
+    }
+  };
 
   // Render circles:
   const renderCircles = () => {
@@ -131,6 +194,13 @@ const PlayerAvailabilityComponent = (props) => {
         {daysOfWeek.map((day, index) => (
           <div key={index} className="circle">
             {day}
+
+            {/* {Object.entries(availabilityMapping.morning).map(
+          ([day, isAvailable]) => (
+            <div
+              key={day}
+              className={`circle ${isAvailable ? AvailabilityDayDisplay : ""}`}
+            > */}
           </div>
         ))}
       </div>
@@ -147,21 +217,21 @@ const PlayerAvailabilityComponent = (props) => {
           <div style={{ flex: 1 }}>
             <h5>Morning</h5>
           </div>
-          <AvailabilityComponent availability={props.availability} />
+          {/* <AvailabilityComponent availability={props.availability} /> */}
           {renderCircles()}
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
             <h5>Afternoon</h5>
           </div>
-          <AvailabilityComponent availability={props.availability} />
+          {/* <AvailabilityComponent availability={props.availability} /> */}
           {renderCircles()}
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ flex: 1 }}>
             <h5>Evening</h5>
           </div>
-          <AvailabilityComponent availability={props.availability} />
+          {/* <AvailabilityComponent availability={props.availability} /> */}
           {renderCircles()}
         </div>
       </div>
@@ -195,11 +265,6 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
     fetchUserData();
   }, [lastPartCurrentUser]);
 
-  // Capitalizing the first letters of the days
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
   console.log(userData);
   return userData ? (
     <div>
@@ -208,9 +273,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
           <Row>
             <Col lg="4">
               <ProfilePicComponent />
-              <PlayerAvailabilityComponent
-                availability={userData.playerAvailability}
-              />
+              <PlayerAvailability availability={userData.playerAvailability} />
             </Col>
             <Col lg="8">
               <Card className="mb-4">
