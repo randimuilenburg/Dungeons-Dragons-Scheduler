@@ -188,7 +188,11 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   </Row>
                 </Card.Body>
               </Card>
-              <CharacterCardForProfile characterName={"name"} />
+              <CharacterCardForProfile
+                characterName={userData.characters.name}
+              />
+              {/* (Carousel will take userData.characters and map through characters, creating
+              card for each and displaying that.) */}
             </Col>
           </Row>
         </Container>

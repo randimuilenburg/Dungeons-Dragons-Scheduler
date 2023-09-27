@@ -1,4 +1,5 @@
 import { Card } from "react-bootstrap";
+import { capitialize } from "../utils/StringUtils";
 
 const dayAvailability = {
   monday: false,
@@ -58,9 +59,11 @@ const PlayerAvailabilityHeader = (props) => {
 };
 
 const PlayerAvailabilityTimeslotDisplay = (props) => {
+  const capitalizedTimeslot = capitialize(props.timeslot);
+
   return (
     <div style={{ flex: 1 }}>
-      <h5>{props.timeslot}</h5>
+      <h5>{capitalizedTimeslot}</h5>
     </div>
   );
 };

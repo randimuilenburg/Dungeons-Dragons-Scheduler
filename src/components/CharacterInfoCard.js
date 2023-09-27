@@ -1,5 +1,6 @@
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
+import { capitialize } from "../utils/StringUtils";
 
 const defaultImage = require("../Images/DefaultImage.jpeg");
 
@@ -36,7 +37,6 @@ const CharacterCardForProfile = (props) => {
               value={characterAlignment}
             />
           </Row>
-
           <Row>
             <CharacterCardAttribute title="Race" value={characterRace} />
             <CharacterCardAttribute title="Level" value={characterLevel} />
