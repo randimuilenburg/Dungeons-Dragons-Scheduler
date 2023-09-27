@@ -188,7 +188,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   </Row>
                 </Card.Body>
               </Card>
-              <CharacterCardForProfile />
+              <CharacterCardForProfile characterName={"name"} />
             </Col>
           </Row>
         </Container>
