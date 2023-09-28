@@ -2,9 +2,10 @@
 // import useFetch from "./DataFetching";
 import React, { useState, useEffect, useSyncExternalStore } from "react";
 import { Container, Row, Col, Card, Button, ListGroup } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import PlayerAvailability from "./PlayerAvailability";
 import CharacterCardForProfile from "./CharacterInfoCard";
-import { Link } from "react-router-dom";
+import CarouselCharacterCards from "./CarouselCharacterCards";
 
 const dayAvailability = {
   monday: false,
@@ -193,6 +194,7 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
               />
               {/* (Carousel will take userData.characters and map through characters, creating
               card for each and displaying that.) */}
+              <CarouselCharacterCards />
             </Col>
           </Row>
         </Container>
