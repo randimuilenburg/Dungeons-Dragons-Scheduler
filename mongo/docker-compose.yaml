@@ -1,6 +1,7 @@
 version: '3'
 services:
   mongo:
+    container_name: dungeon-scheduler-mongo
     build:
       context: .
       dockerfile: Dockerfile

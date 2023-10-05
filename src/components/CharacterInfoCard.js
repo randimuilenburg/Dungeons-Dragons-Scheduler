@@ -1,6 +1,6 @@
 import Card from "react-bootstrap/Card";
 import { Row, Col } from "react-bootstrap";
-import { capitialize } from "../utils/StringUtils";
+// import { capitialize } from "../utils/StringUtils";
 
 const defaultImage = require("../Images/DefaultImage.jpeg");
 

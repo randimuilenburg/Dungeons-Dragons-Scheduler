@@ -24,7 +24,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "api-start": "node server.js",
-    "start-all": "react-scripts start & node server.js"
+    "start-all": "react-scripts start & node server.js",
+    "api-start-docker": "docker compose -f mongo/docker-compose.yaml up -d & node server.js",
+    "start-all-docker": "docker compose -f mongo/docker-compose.yaml up -d & node server.js & react-scripts start"
   },
   "eslintConfig": {
     "extends": [

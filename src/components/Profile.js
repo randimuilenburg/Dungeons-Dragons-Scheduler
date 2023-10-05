@@ -189,9 +189,18 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                   </Row>
                 </Card.Body>
               </Card>
-              <CharacterCardForProfile
+              {/* <CharacterCardForProfile 
                 characterName={userData.characters.name}
-              />
+              /> */}
+              {userData.characters.map((character) => {
+                return (
+                  <CharacterCardForProfile
+                    // imagePath={}
+                    characterName={character.name}
+                    characterClass={character.information.class}
+                  />
+                );
+              })}
               {/* (Carousel will take userData.characters and map through characters, creating
               card for each and displaying that.) */}
               <CarouselCharacterCards />
