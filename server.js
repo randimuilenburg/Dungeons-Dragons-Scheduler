@@ -1,6 +1,6 @@
 const express = require("express");
-const fs = require("fs");
 const cors = require("cors");
+const mongoose = require("mongoose");
 
 const app = express();
 const port = 4000;
@@ -12,31 +12,34 @@ app.use(
   })
 );
 
+const mongoURI = "mongodb://admin:adminPassword@localhost:27017/admin";
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const dungeonSchedulerDB = mongoose.connection.useDb("dungeon-scheduler");
+
 function isNumericString(inputString) {
   return /^\d+$/.test(inputString);
 }
 
 app.get("/api/users", (req, res) => {
-  const { userId } = req.params;
-  fs.readFile("./src/data.json", "utf8", (err, data) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).send("Internal Server Error");
-    }
-
-    try {
-      const jsonData = JSON.parse(data);
-      return res.json(jsonData);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send("Internal Server Error");
-    }
-  });
+  dungeonSchedulerDB
+    .collection("users")
+    .find({})
+    .toArray((err, users) => {
+      if (err) {
+        console.error("Error fetching users:", err);
+        return res.status(500).send("Internal Server Error");
+      }
+      return res.json(users);
+    });
 });
 
 app.get("/api/users/:userId", (req, res) => {
   const { userId } = req.params;
-  // const intUserId = parseInt(userId);
   if (!isNumericString(userId)) {
     return res
       .status(400)
@@ -45,25 +48,18 @@ app.get("/api/users/:userId", (req, res) => {
       );
   }
 
-  fs.readFile("./src/data.json", "utf8", (err, data) => {
-    if (err) {
-      return res.status(500).send("Internal Server Error");
-    } else {
-      try {
-        const jsonData = JSON.parse(data);
-        const user = jsonData.find((users) => users.id === userId);
-
+  dungeonSchedulerDB
+    .collection("users")
+    .findOne({ id: userId }, (err, user) => {
+      if (err) {
+        return res.status(500).send("Internal server error");
+      } else {
         if (!user) {
-          return res.status(404).send("Profile not found");
+          return res.status(404).send("User not found");
         }
-
         return res.json(user);
-      } catch (error) {
-        console.error(error);
-        return res.status(500).send("Internal Server Error");
       }
-    }
-  });
+    });
 });
 
 app.listen(port, () => {
