@@ -9,7 +9,7 @@ const url = "http://localhost:4000/api/users/1";
 
 // Send an HTTP GET request to the specified URL
 http
-  .get(url, (response) => {
+  .put(url, (response) => {
     let data = "";
 
     // Event handler for receiving data

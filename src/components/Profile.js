@@ -198,6 +198,9 @@ const FetchForProfile = ({ lastPartCurrentUser }) => {
                     // imagePath={}
                     characterName={character.name}
                     characterClass={character.information.class}
+                    characterRace={character.information.race}
+                    characterAlignment={character.information.alignment}
+                    characterLevel={character.information.level}
                   />
                 );
               })}
