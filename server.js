@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 4000;
@@ -9,7 +10,8 @@ app.use(
   cors({
     origin: "http://localhost:3000",
     optionsSuccessStatus: 200,
-  })
+  }),
+  bodyParser.json()
 );
 
 const mongoURI = "mongodb://admin:adminPassword@localhost:27017/admin";
@@ -60,6 +62,50 @@ app.get("/api/users/:userId", (req, res) => {
         return res.json(user);
       }
     });
+});
+
+app.put("/api/users/:userId", (req, res) => {
+  const { userId } = req.params;
+  const user = req.body;
+  dungeonSchedulerDB
+    .collection("users")
+    .updateOne({ id: userId }, { $set: user }, (err, result) => {
+      if (err) {
+        return res.status(500).send("Internal Server Error: " + err);
+      } else {
+        if (result.matchedCount === 1) {
+          return res.json(result);
+        }
+        return res
+          .status(404)
+          .send("Something went wrong " + result.modifiedCount);
+      }
+    });
+});
+
+app.put("/api/users/:userId/characters/:characterId", (req, res) => {
+  const { userId, characterId } = req.params;
+  const updatedCharacterFields = req.body;
+
+  const updateFields = {};
+  for (const key in updatedCharacterFields) {
+    updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
+  }
+
+  dungeonSchedulerDB.collection("users").updateOne(
+    { id: userId, "characters.id": Number(characterId) }, // Match user and character by ID
+    { $set: updateFields }, // Update the matched character
+    (err, result) => {
+      if (err) {
+        return res.status(500).send("Internal Server Error " + err);
+      } else {
+        if (result.matchedCount > 0) {
+          return res.json(result);
+        }
+        return res.status(404).send("User or character not found");
+      }
+    }
+  );
 });
 
 // app.put
