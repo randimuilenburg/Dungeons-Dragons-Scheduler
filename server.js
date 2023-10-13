@@ -11,7 +11,7 @@ app.use(
     origin: "http://localhost:3000",
     optionsSuccessStatus: 200,
   }),
-  bodyParser.json()
+  bodyParser.json({ limit: "50mb" })
 );
 
 const mongoURI = "mongodb://admin:adminPassword@localhost:27017/admin";
@@ -106,6 +106,20 @@ app.put("/api/users/:userId/characters/:characterId", (req, res) => {
       }
     }
   );
+});
+
+app.get("/api/users/:userId/characters", (req, res) => {
+  const { userId } = req.params;
+
+  dungeonSchedulerDB
+    .collection("users")
+    .findOne({ id: userId }, (err, user) => {
+      if (err) {
+        return res.status(500).send("Internal Server Error: " + err);
+      } else {
+        return res.json(user.characters);
+      }
+    });
 });
 
 // app.put
