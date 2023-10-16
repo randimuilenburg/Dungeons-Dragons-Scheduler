@@ -19,7 +19,7 @@ function CarouselCharacterCards() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          alt="Character 1"
+          alt="Character 2"
           width="500"
           height="500"
           src={require("../Images/Barb.jpeg")}
@@ -31,7 +31,7 @@ function CarouselCharacterCards() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          alt="Character 1"
+          alt="Character 3"
           width="500"
           height="500"
           src={require("../Images/Barb.jpeg")}
