@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const grid = require("gridfs-stream");
 
 const app = express();
 const port = 4000;
@@ -23,109 +24,67 @@ mongoose.connect(mongoURI, {
 
 const dungeonSchedulerDB = mongoose.connection.useDb("dungeon-scheduler");
 
+let gfs; // GridFS stream
+
+dungeonSchedulerDB.once("open", () => {
+  gfs = grid(dungeonSchedulerDB.db, mongoose.mongo);
+  gfs.collection("uploads");
+});
+
 function isNumericString(inputString) {
   return /^\d+$/.test(inputString);
 }
 
-app.get("/api/users", (req, res) => {
-  dungeonSchedulerDB
-    .collection("users")
-    .find({})
-    .toArray((err, users) => {
-      if (err) {
-        console.error("Error fetching users:", err);
-        return res.status(500).send("Internal Server Error");
-      }
-      return res.json(users);
-    });
-});
+// ... Your existing routes ...
 
-app.get("/api/users/:userId", (req, res) => {
-  const { userId } = req.params;
-  if (!isNumericString(userId)) {
-    return res
-      .status(400)
-      .send(
-        "Please select a URL with numeric character in order to see the corresponding profile."
-      );
+// Upload image using GridFS
+app.post("/api/upload", (req, res) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).json({ message: "No files were uploaded." });
   }
 
-  dungeonSchedulerDB
-    .collection("users")
-    .findOne({ id: userId }, (err, user) => {
-      if (err) {
-        return res.status(500).send("Internal server error");
-      } else {
-        if (!user) {
-          return res.status(404).send("User not found");
-        }
-        return res.json(user);
-      }
+  const file = req.files.file;
+
+  // Create a write stream to store the uploaded file in GridFS
+  const writeStream = gfs.createWriteStream({
+    filename: file.name,
+    mode: "w",
+    content_type: file.mimetype,
+    metadata: { someKey: "someValue" }, // Optional metadata
+  });
+
+  writeStream.on("close", (file) => {
+    return res.status(200).json({
+      file_id: file._id,
+      message: "File uploaded successfully.",
     });
+  });
+
+  writeStream.on("error", (error) => {
+    return res.status(500).json({ error });
+  });
+
+  file.pipe(writeStream);
 });
 
-app.put("/api/users/:userId", (req, res) => {
-  const { userId } = req.params;
-  const user = req.body;
-  dungeonSchedulerDB
-    .collection("users")
-    .updateOne({ id: userId }, { $set: user }, (err, result) => {
-      if (err) {
-        return res.status(500).send("Internal Server Error: " + err);
-      } else {
-        if (result.matchedCount === 1) {
-          return res.json(result);
-        }
-        return res
-          .status(404)
-          .send("Something went wrong " + result.modifiedCount);
-      }
-    });
-});
+// Retrieve image using GridFS
+app.get("/api/images/:imageId", (req, res) => {
+  const { imageId } = req.params;
 
-app.put("/api/users/:userId/characters/:characterId", (req, res) => {
-  const { userId, characterId } = req.params;
-  const updatedCharacterFields = req.body;
-
-  const updateFields = {};
-  for (const key in updatedCharacterFields) {
-    updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
-  }
-
-  dungeonSchedulerDB.collection("users").updateOne(
-    { id: userId, "characters.id": Number(characterId) }, // Match user and character by ID
-    { $set: updateFields }, // Update the matched character
-    (err, result) => {
-      if (err) {
-        return res.status(500).send("Internal Server Error " + err);
-      } else {
-        if (result.matchedCount > 0) {
-          return res.json(result);
-        }
-        return res.status(404).send("User or character not found");
-      }
+  gfs.files.findOne({ _id: mongoose.Types.ObjectId(imageId) }, (err, file) => {
+    if (err) {
+      return res.status(500).json({ error: err });
     }
-  );
+
+    if (!file) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    const readStream = gfs.createReadStream({ _id: file._id });
+    readStream.pipe(res);
+  });
 });
-
-app.get("/api/users/:userId/characters", (req, res) => {
-  const { userId } = req.params;
-
-  dungeonSchedulerDB
-    .collection("users")
-    .findOne({ id: userId }, (err, user) => {
-      if (err) {
-        return res.status(500).send("Internal Server Error: " + err);
-      } else {
-        return res.json(user.characters);
-      }
-    });
-});
-
-// app.put
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-// then: ping time
