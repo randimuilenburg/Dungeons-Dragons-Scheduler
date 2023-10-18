@@ -64,6 +64,24 @@ app.get("/api/users", (req, res) => {
     });
 });
 
+// TEST
+app.get("/api/person/name", (req, res) => {
+  const nameData = { name: "Cricket" };
+  res.json(nameData);
+});
+
+// TEST
+app.get("/api/person/age", (req, res) => {
+  const theAge = { age: 18 };
+  res.json(theAge);
+});
+
+// TEST
+app.get("/api/person/true", (req, res) => {
+  const isCool = true;
+  res.json({ isCool });
+});
+
 app.get("/api/users/:userId", (req, res) => {
   const { userId } = req.params;
   if (!isNumericString(userId)) {
@@ -107,38 +125,71 @@ app.put("/api/users/:userId", (req, res) => {
     });
 });
 
+// req = {
+//   params: {userId: 1, characterId: 2},
+//   body: {},
+//   files: {files: binary}
+// }
+
 app.put(
   "/api/users/:userId/characters/:characterId",
-  upload.single("file"),
+  // upload.single("file"),
   (req, res) => {
     const { userId, characterId } = req.params;
     const updatedCharacterFields = req.body;
-    const updatedCharacterFiles = req.files;
-    let updatedCharacterImageId = null;
+    // const updatedCharacterFiles = req.files;
+    // let updatedCharacterImageId = null;
 
     const updateFields = {};
     for (const key in updatedCharacterFields) {
       updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
     }
 
+    // characters.$.age
+
+    // characters = [
+    //   {},
+    //   {},
+    //   {}
+    // ]
+
+    // updatedCharacterFields = { name: "Spenser", age: 31 };
+
+    // updatedCharacterFields.name === updatedCharacterFields["name"];
+
+    // user = {
+    //   name: "Randi",
+    //   character: {
+    //     id: 1,
+    //     name: "Something",
+    //   },
+    // };
+
+    // updateFields = {};
+
+    // updateFields[`characters.$.name`] = "Spenser";
+    // updateFields[`characters.$.age`] = 31;
+
+    // updateFields = { "characters.$.name": "Spenser", "characters.$.age": 31 };
+
     // Check if there's an image upload
-    if (updatedCharacterFiles) {
-      const updatedCharacterImage = req.files.file;
+    // if (updatedCharacterFiles) {
+    //   const updatedCharacterImage = req.files.file;
 
-      const writeStream = gfs.createWriteStream({
-        filename: updatedCharacterImage.name,
-      });
+    //   const writeStream = gfs.createWriteStream({
+    //     filename: updatedCharacterImage.name,
+    //   });
 
-      updatedCharacterImage.pipe(writeStream);
+    //   updatedCharacterImage.pipe(writeStream);
 
-      writeStream.on("close", (file) => {
-        updatedCharacterImageId = file._id;
-      });
-    }
+    //   writeStream.on("close", (file) => {
+    //     updatedCharacterImageId = file._id;
+    //   });
+    // }
 
-    if (updatedCharacterImageId) {
-      updatedFields[`characters.$.imageId`] = updatedCharacterImageId;
-    }
+    // if (updatedCharacterImageId) {
+    //   updatedFields[`characters.$.imageId`] = updatedCharacterImageId;
+    // }
 
     dungeonSchedulerDB.collection("users").updateOne(
       { id: userId, "characters.id": Number(characterId) }, // Match user and character by ID
@@ -157,6 +208,13 @@ app.put(
     );
   }
 );
+
+// function handleErrorAndResult(error, user) {
+//   //do something with the error
+//   // do something with use
+// }
+
+// (error, user) => {//do something}
 
 app.get("/api/users/:userId/characters", (req, res) => {
   const { userId } = req.params;
