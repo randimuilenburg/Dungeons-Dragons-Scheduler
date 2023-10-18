@@ -1,6 +1,7 @@
 from PIL import Image
 import io
 import requests
+import json
 
 # Open an image file
 image = Image.open('/home/dingodev/dungeon-scheduler/src/Images/Randiplayerimg.jpg')
@@ -12,28 +13,18 @@ with io.BytesIO() as buffer:
 
 url = "http://localhost:4000/api/users/1/characters/1"
 
-# Convert binary image data to base64 (optional, for JSON payload)
-import base64
-base64_image = base64.b64encode(binary_data).decode('utf-8')
-
-body = {
-    "imageBinary": base64_image,
-    # Include other data as needed
-    # "name": "Rhubarb Bellator Skyshocker",
-    # "nickname": "Barb",
-    # "information": {
-    #     "race": "Dragonborn",
-    #     "class": "Barbarian",
-    #     "background": "Solider",
-    #     "skills": "Athletics, Intimidation, Perception",
-    #     "languages": "Draconic, Common",
-    #     "alignment": "Chaotic Good",
-    #     "inUse": True
-    # }
+# Create a dictionary to hold JSON data
+json_data = {
+    "isCool": True,
 }
 
-headers = {'Content-Type': 'application/json'}
+# Use 'multipart/form-data' to send both JSON data and the file
+data = {
+    'json': (None, json.dumps(json_data), 'application/json'),
+    'file': ('Randiplayerimg.jpg', binary_data, 'image/jpeg'),
+}
 
-r = requests.put(url, json=body, headers=headers)
+# Make a POST request with multipart/form-data
+response = requests.put(url, files=data)
 
-print(r.text)
+print(response.text)
