@@ -3,14 +3,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const grid = require("gridfs-stream");
-const multer = require("multer"); // Import multer
+const multer = require("multer");
 
 const app = express();
 const port = 4000;
 
 /*
 TODO:
-1. Remove image upload logic from /api/users/:userId/characters/:characterId
 2. Make a new endpoint that accepts post requests to upload a characater image and ONLY a character image.
    This endpoint should take in the image, write it to gridfs, and then user mongoose to update the character object
    with the image location (use the same endpoint url as above just have it use a post request be different)
@@ -24,8 +23,6 @@ app.use(
     origin: "http://localhost:3000",
     optionsSuccessStatus: 200,
   })
-  // bodyParser.json({ limit: "50mb" })
-  // express.json()
 );
 
 app.use(express.json());
@@ -65,22 +62,22 @@ app.get("/api/users", (req, res) => {
 });
 
 // TEST
-app.get("/api/person/name", (req, res) => {
-  const nameData = { name: "Cricket" };
-  res.json(nameData);
-});
+// app.get("/api/person/name", (req, res) => {
+//   const nameData = { name: "Cricket" };
+//   res.json(nameData);
+// });
 
 // TEST
-app.get("/api/person/age", (req, res) => {
-  const theAge = { age: 18 };
-  res.json(theAge);
-});
+// app.get("/api/person/age", (req, res) => {
+//   const theAge = { age: 18 };
+//   res.json(theAge);
+// });
 
 // TEST
-app.get("/api/person/true", (req, res) => {
-  const isCool = true;
-  res.json({ isCool });
-});
+// app.get("/api/person/true", (req, res) => {
+//   const isCool = true;
+//   res.json({ isCool });
+// });
 
 app.get("/api/users/:userId", (req, res) => {
   const { userId } = req.params;
@@ -137,59 +134,11 @@ app.put(
   (req, res) => {
     const { userId, characterId } = req.params;
     const updatedCharacterFields = req.body;
-    // const updatedCharacterFiles = req.files;
-    // let updatedCharacterImageId = null;
 
     const updateFields = {};
     for (const key in updatedCharacterFields) {
       updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
     }
-
-    // characters.$.age
-
-    // characters = [
-    //   {},
-    //   {},
-    //   {}
-    // ]
-
-    // updatedCharacterFields = { name: "Spenser", age: 31 };
-
-    // updatedCharacterFields.name === updatedCharacterFields["name"];
-
-    // user = {
-    //   name: "Randi",
-    //   character: {
-    //     id: 1,
-    //     name: "Something",
-    //   },
-    // };
-
-    // updateFields = {};
-
-    // updateFields[`characters.$.name`] = "Spenser";
-    // updateFields[`characters.$.age`] = 31;
-
-    // updateFields = { "characters.$.name": "Spenser", "characters.$.age": 31 };
-
-    // Check if there's an image upload
-    // if (updatedCharacterFiles) {
-    //   const updatedCharacterImage = req.files.file;
-
-    //   const writeStream = gfs.createWriteStream({
-    //     filename: updatedCharacterImage.name,
-    //   });
-
-    //   updatedCharacterImage.pipe(writeStream);
-
-    //   writeStream.on("close", (file) => {
-    //     updatedCharacterImageId = file._id;
-    //   });
-    // }
-
-    // if (updatedCharacterImageId) {
-    //   updatedFields[`characters.$.imageId`] = updatedCharacterImageId;
-    // }
 
     dungeonSchedulerDB.collection("users").updateOne(
       { id: userId, "characters.id": Number(characterId) }, // Match user and character by ID
@@ -229,8 +178,6 @@ app.get("/api/users/:userId/characters", (req, res) => {
       }
     });
 });
-
-// app.put
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
