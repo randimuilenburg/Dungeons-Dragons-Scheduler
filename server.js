@@ -142,13 +142,6 @@ app.put(
   }
 );
 
-// TODO:
-// 2. Make a new endpoint that accepts post requests to upload a characater image and ONLY a character image.
-//    This endpoint should take in the image, write it to gridfs, and then use mongoose to update the character object
-//    with the image location (use the same endpoint url as above just have it use a post request be different)
-// 3. Write a get endpoint that returns an image from gridfs based on the location you provide
-// 4. Come see Spenser
-
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
     return res
@@ -184,27 +177,6 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
       }
     );
 });
-
-// app.post(
-//   "/upload-character-image",
-//   upload.single("character_image"),
-//   (req, res) => {
-//     try {
-//      if (!req.file) {
-//       return res.status(400).json({message: "No character image found in the database."});
-//      }
-//     const characterId = req.body.characterId;
-//     const imageLocation = "/uploads/${req.file.filename}";
-
-//   }
-// );
-
-// function handleErrorAndResult(error, user) {
-//   //do something with the error
-//   // do something with use
-// }
-
-// (error, user) => {//do something}
 
 app.get("/api/users/:userId/characters", (req, res) => {
   const { userId } = req.params;
