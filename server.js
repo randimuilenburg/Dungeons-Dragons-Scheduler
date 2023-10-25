@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const grid = require("gridfs-stream");
 const multer = require("multer");
+const { GridFsStorage } = require("multer-gridfs-storage");
 
 const app = express();
 const port = 4000;
@@ -31,25 +32,20 @@ grid.mongo = mongoose.mongo;
 const gfs = grid(mongoConn);
 
 // Set up Multer for handling file uploads
-const multerStorage = multer.memoryStorage(); // Uses in-memory storage
-const upload = multer({ storage: multerStorage });
-
-// let gfs;
-// conn.once("open", () => {
-//   gfs.collection("uploads");
-// });
-
-// const storage = new GridFsStorage({
-//   url: mongoURI,
-//   file: (req, files) => {
-//     return {
-//       filename: files.originalname,
-//     };
-//   },
-// });
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return {
+      filename: file.originalname,
+      profileImagesGrid: "uploads",
+    };
+  },
+});
+const upload = multer({ storage });
+// const multerStorage = multer.memoryStorage(); // Uses in-memory storage
+// const upload = multer({ storage: multerStorage });
 
 // Non-fuctions / routes below
-
 function isNumericString(inputString) {
   return /^\d+$/.test(inputString);
 }
@@ -66,24 +62,6 @@ app.get("/api/users", (req, res) => {
       return res.json(users);
     });
 });
-
-// TEST
-// app.get("/api/person/name", (req, res) => {
-//   const nameData = { name: "Cricket" };
-//   res.json(nameData);
-// });
-
-// TEST
-// app.get("/api/person/age", (req, res) => {
-//   const theAge = { age: 18 };
-//   res.json(theAge);
-// });
-
-// TEST
-// app.get("/api/person/true", (req, res) => {
-//   const isCool = true;
-//   res.json({ isCool });
-// });
 
 app.get("/api/users/:userId", (req, res) => {
   const { userId } = req.params;
@@ -166,12 +144,46 @@ app.put(
 
 // TODO:
 // 2. Make a new endpoint that accepts post requests to upload a characater image and ONLY a character image.
-//    This endpoint should take in the image, write it to gridfs, and then user mongoose to update the character object
+//    This endpoint should take in the image, write it to gridfs, and then use mongoose to update the character object
 //    with the image location (use the same endpoint url as above just have it use a post request be different)
 // 3. Write a get endpoint that returns an image from gridfs based on the location you provide
 // 4. Come see Spenser
 
-// CRY
+app.post("/api/upload", upload.single("image"), (req, res) => {
+  if (!req.file) {
+    return res
+      .status(400)
+      .json({ error: "No image file uploaded, try again." });
+  }
+  // return res.status(200).json({ message: "Image uploaded successfully!" });
+
+  // Does the character have a character id?
+  const characterId = req.body.characterId;
+
+  // Image location from req.file object
+  const imageLocation = `/uploads/${req.file.filename}`;
+
+  dungeonSchedulerDB
+    .collection("users")
+    .updateOne(
+      { "characters.id": characterId },
+      { $set: { "characters.$.imageLocation": imageLocation } },
+      (err, result) => {
+        if (err) {
+          return res.status(500).send("Internal server error: " + err);
+        } else {
+          if (result.matchedCount > 0) {
+            return res
+              .status(200)
+              .json({ message: "Image uploaded and saved to character!" });
+          }
+          return res
+            .status(404)
+            .send("Character not found, couldn't save image.");
+        }
+      }
+    );
+});
 
 // app.post(
 //   "/upload-character-image",

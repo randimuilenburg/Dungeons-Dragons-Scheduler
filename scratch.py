@@ -19,12 +19,17 @@ json_data = {
 }
 
 # Use 'multipart/form-data' to send both JSON data and the file
-data = {
-    'json': (None, json.dumps(json_data), 'application/json'),
-    'file': ('Randiplayerimg.jpg', binary_data, 'image/jpeg'),
-}
+# data = {
+#     'json': (None, json.dumps(json_data), 'application/json'),
+#     'file': ('Randiplayerimg.jpg', binary_data, 'image/jpeg'),
+# }
 
 # Make a POST request with multipart/form-data
-response = requests.put(url, files=data)
+response = requests.put(url, files={"file": ('Randiplayerimg.jpg', binary_data, 'image/jpeg')})
 
-print(response.text)
+if response.status_code == 200:
+    print("Image uploaded successfully!")
+else: 
+    print("Error: Uploading image failed.", response.text)
+
+# print(response.text)
