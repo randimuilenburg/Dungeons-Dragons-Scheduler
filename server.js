@@ -178,6 +178,8 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
     );
 });
 
+// Write .get endpoint to return image from gridfs
+
 app.get("/api/users/:userId/characters", (req, res) => {
   const { userId } = req.params;
 

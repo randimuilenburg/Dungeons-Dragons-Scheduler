@@ -11,11 +11,12 @@ with io.BytesIO() as buffer:
     image.save(buffer, format="JPEG")
     binary_data = buffer.getvalue()
 
-url = "http://localhost:4000/api/users/1/characters/1"
+# url = "http://localhost:4000/api/users/1/characters/1"
+url = "http://localhost:4000/api/upload"
 
 # Create a dictionary to hold JSON data
 json_data = {
-    "isCool": True,
+   "characterId": 1,
 }
 
 # Use 'multipart/form-data' to send both JSON data and the file
@@ -25,7 +26,8 @@ json_data = {
 # }
 
 # Make a POST request with multipart/form-data
-response = requests.put(url, files={"file": ('Randiplayerimg.jpg', binary_data, 'image/jpeg')})
+response = requests.post(url, files={"image": ('Randiplayerimg.jpg', binary_data, 'image/jpeg')})
+
 
 if response.status_code == 200:
     print("Image uploaded successfully!")
