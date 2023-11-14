@@ -112,7 +112,6 @@ app.put("/api/users/:userId", (req, res) => {
 //   files: {files: binary}
 // }
 
-
 app.put(
   "/api/users/:userId/characters/:characterId",
   // upload.single("file"),
@@ -125,10 +124,8 @@ app.put(
       updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
     }
 
-    dungeonSchedulerDB
-    .collection("users")
-    .updateOne(
-      {characters: {$elemMatch: {id: 1}}},
+    dungeonSchedulerDB.collection("users").updateOne(
+      { characters: { $elemMatch: { id: 1 } } },
       // { "characters.$.id": characterId },
       { $set: { "characters.$.imageLocation": imageLocation } },
       (err, result) => {
@@ -145,11 +142,9 @@ app.put(
             .send("Character not found, couldn't save image.");
         }
       }
-    )
+    );
   }
 );
-
-
 
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
@@ -165,32 +160,27 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
   // Image location from req.file object
   const imageLocation = `/uploads/${req.file.filename}`;
 
-
-
-  dungeonSchedulerDB
-    .collection("users")
-    .updateOne(
-      { "characters.id": 1 }, // Adjusted the filter condition
-      { $set: { "characters.$.imageLocation": imageLocation } },
-      (err, result) => {
-        if (err) {
-          return res.status(500).send("Internal server error: " + err);
-        } else {
-          if (result.matchedCount > 0) {
-            return res
-              .status(200)
-              .json({ message: "Image uploaded and saved to character!" });
-          }
+  dungeonSchedulerDB.collection("users").updateOne(
+    { "characters.id": 1 }, // Adjusted the filter condition
+    { $set: { "characters.$.imageLocation": imageLocation } },
+    (err, result) => {
+      if (err) {
+        return res.status(500).send("Internal server error: " + err);
+      } else {
+        if (result.matchedCount > 0) {
           return res
-            .status(404)
-            .send("Character not found, couldn't save image.");
+            .status(200)
+            .json({ message: "Image uploaded and saved to character!" });
         }
+        return res
+          .status(404)
+          .send("Character not found, couldn't save image.");
       }
-    );
-
+    }
+  );
+});
 
 // db.users.find({characters: {$elemMatch: {id: 1}}})
-
 
 // user
 // {
