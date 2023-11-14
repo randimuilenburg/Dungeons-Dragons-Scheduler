@@ -112,6 +112,7 @@ app.put("/api/users/:userId", (req, res) => {
 //   files: {files: binary}
 // }
 
+
 app.put(
   "/api/users/:userId/characters/:characterId",
   // upload.single("file"),
@@ -124,23 +125,31 @@ app.put(
       updateFields[`characters.$.${key}`] = updatedCharacterFields[key];
     }
 
-    dungeonSchedulerDB.collection("users").updateOne(
-      { id: userId, "characters.id": Number(characterId) }, // Match user and character by ID
-      { $set: updateFields }, // Update the matched character
+    dungeonSchedulerDB
+    .collection("users")
+    .updateOne(
+      {characters: {$elemMatch: {id: 1}}},
+      // { "characters.$.id": characterId },
+      { $set: { "characters.$.imageLocation": imageLocation } },
       (err, result) => {
         if (err) {
-          return res.status(500).send("Internal Server Error " + err);
+          return res.status(500).send("Internal server error: " + err);
         } else {
           if (result.matchedCount > 0) {
-            [];
-            return res.json(result);
+            return res
+              .status(200)
+              .json({ message: "Image uploaded and saved to character!" });
           }
-          return res.status(404).send("User or character not found");
+          return res
+            .status(404)
+            .send("Character not found, couldn't save image.");
         }
       }
-    );
+    )
   }
 );
+
+
 
 app.post("/api/upload", upload.single("image"), (req, res) => {
   if (!req.file) {
@@ -156,10 +165,12 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
   // Image location from req.file object
   const imageLocation = `/uploads/${req.file.filename}`;
 
+
+
   dungeonSchedulerDB
     .collection("users")
     .updateOne(
-      { "characters.id": characterId },
+      { "characters.id": 1 }, // Adjusted the filter condition
       { $set: { "characters.$.imageLocation": imageLocation } },
       (err, result) => {
         if (err) {
@@ -176,7 +187,22 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
         }
       }
     );
-});
+
+
+// db.users.find({characters: {$elemMatch: {id: 1}}})
+
+
+// user
+// {
+//   id: 123,
+//   name: 'Randi',
+//   characters: [
+//     {
+//     id: 1,
+//     name: 'Rue'
+//     }
+//   ]
+// }
 
 // Write .get endpoint to return image from gridfs
 
