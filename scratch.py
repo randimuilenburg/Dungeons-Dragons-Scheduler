@@ -26,7 +26,7 @@ json_data = {
 # }
 
 # Make a POST request with multipart/form-data
-response = requests.post(url, files={"image": ('Randiplayerimg.jpg', binary_data, 'image/jpeg')})
+response = requests.post(url, files={"image": ('Barb.jpeg', binary_data, 'image/jpeg')})
 
 
 if response.status_code == 200:

@@ -154,7 +154,6 @@ app.post("/api/upload", upload.single("image"), (req, res) => {
   }
   // return res.status(200).json({ message: "Image uploaded successfully!" });
 
-  // Does the character have a character id?
   const characterId = req.body.characterId;
 
   // Image location from req.file object
